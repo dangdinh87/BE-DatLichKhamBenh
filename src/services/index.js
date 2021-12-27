@@ -1,0 +1,1 @@
+export const userService = require('./patient.service');
