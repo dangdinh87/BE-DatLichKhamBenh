@@ -9,16 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      TimeSlot.hasMany(models.Booking);
-      TimeSlot.belongsTo(models.Schedule, { foreignKey: 'scheduleId' });
+      TimeSlot.hasMany(models.Booking, { foreignKey: "timeSlotId" });
+      TimeSlot.belongsTo(models.Schedule, { foreignKey: "scheduleId" });
     }
   }
   TimeSlot.init(
     {
+      timeSlotId: DataTypes.STRING,
+      timeStart: DataTypes.STRING,
       timeStart: DataTypes.DATE,
-      timeEnd : DataTypes.DATE,
-      price : DataTypes.INTEGER,
-      scheduleId: DataTypes.INTEGER,
+      timeEnd: DataTypes.DATE,
+      price: DataTypes.INTEGER,
+      scheduleId: DataTypes.STRING,
     },
     {
       sequelize,

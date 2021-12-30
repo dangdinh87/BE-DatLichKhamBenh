@@ -3,30 +3,35 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("Bookings", {
       id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+      },
+      bookingId: {
+        type: Sequelize.STRING,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        allowNull: false,
       },
-      statusId: {
+      dateBooking: {
+        type: Sequelize.DATE,
+      },
+      reasonExamination: {
         type: Sequelize.STRING,
       },
-      doctorId: {
-        type: Sequelize.STRING,
+      status: {
+        type: Sequelize.BOOLEAN,
       },
       patientId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
-      date: {
-        type: Sequelize.DATE,
+      timeSlotId: {
+        type: Sequelize.STRING,
       },
       timeType: {
         type: Sequelize.STRING,
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
+
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,

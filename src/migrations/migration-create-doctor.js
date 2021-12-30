@@ -1,69 +1,74 @@
-'use strict';
+"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Doctors', {
+    await queryInterface.createTable("Doctors", {
       id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+      },
+      doctorId: {
+        type: Sequelize.STRING,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        allowNull: false,
       },
       fullName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       phone: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       gender: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       workHistory: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       avatarImage: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       clinicName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       certificateName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       licenseName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       specialistId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
       positionId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
       accountId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Doctors');
-  }
+    await queryInterface.dropTable("Doctors");
+  },
 };

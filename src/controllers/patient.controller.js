@@ -1,18 +1,23 @@
 import db from "../models/index";
 import catchAsync from "../utils/catchAsync";
-const { userService } = require('../services');
+const { userService } = require("../services");
 
-const getUsers = catchAsync(async (req, res) => {
-  const users = await userService.getAllUser();
-  if (!users) {
-    // throw new ApiError(httpStatus.NOT_FOUND, 'users not found');
+const getAllPatients = catchAsync(async (req, res) => {
+  const patients = await userService.getAllPatients();
+  if (!patients) {
+    throw new ApiError(httpStatus.NOT_FOUND, "users not found");
   }
-  res.send(users);
+  return res.send(patients);
 });
 
-const createUser = catchAsync(async (req, res) => {
-  const user = await userService.createUser(req.body);
-  res.send(user);
+const createPatient = catchAsync(async (req, res) => {
+  const createPatient = await userService.createPatient(req.body);
+  res.send(createPatient);
 });
 
-module.exports = { getUsers, createUser };
+const deletePatient = catchAsync(async (req, res) => {
+  const deleteUser = await userService.deletePatient(req.params.id);
+  res.json(deleteUser);
+});
+
+module.exports = { getAllPatients, createPatient, deletePatient };
