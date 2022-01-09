@@ -1,44 +1,41 @@
-"use strict";
+'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("AdminManagers", {
+    await queryInterface.createTable('Admins', {
       id: {
-        type: Sequelize.INTERGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
       adminId: {
         type: Sequelize.STRING,
         primaryKey: true,
-        allowNull: false,
+        allowNull: false
       },
       fullName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       phone: {
-        type: Sequelize.STRING,
-      },
-      status: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       accountId: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-      },
+        type: Sequelize.DATE
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("AdminManagers");
-  },
+    await queryInterface.dropTable('Admins');
+  }
 };
