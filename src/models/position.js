@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Position.init(
-    { positionId: DataTypes.STRING, positionName: DataTypes.STRING },
+    { positionName: DataTypes.STRING },
     {
       sequelize,
       modelName: "Position",

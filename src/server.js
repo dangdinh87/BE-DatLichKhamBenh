@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 viewEngine(app);
-app.use(initWebRoutes)
+app.use(initWebRoutes);
 
 connectDB();
 

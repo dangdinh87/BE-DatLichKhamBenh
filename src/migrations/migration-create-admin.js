@@ -3,15 +3,9 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("AdminManagers", {
       id: {
-        type: Sequelize.INTERGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      adminId: {
         type: Sequelize.STRING,
-        primaryKey: true,
         allowNull: false,
+        primaryKey: true,
       },
       fullName: {
         type: Sequelize.STRING,

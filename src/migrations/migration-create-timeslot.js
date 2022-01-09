@@ -3,27 +3,24 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("TimeSlots", {
       id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
-      },
-      timeSlotId: {
         type: Sequelize.STRING,
-        primaryKey: true,
         allowNull: false,
+        primaryKey: true,
       },
-      timeStart: {
-        type: Sequelize.DATE,
+      timeSlotValue: {
+        type: Sequelize.STRING,
       },
-      timeEnd: {
-        type: Sequelize.DATE,
+      status: {
+        type: Sequelize.BOOLEAN,
       },
       price: {
         type: Sequelize.INTEGER,
       },
       scheduleId: {
         type: Sequelize.STRING,
+      },
+      orderIndex: {
+        type: Sequelize.NUMBER,
       },
       createdAt: {
         allowNull: false,

@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Doctor.init(
     {
-      dockerId: DataTypes.STRING,
       fullName: DataTypes.STRING,
       phone: DataTypes.STRING,
       email: DataTypes.STRING,

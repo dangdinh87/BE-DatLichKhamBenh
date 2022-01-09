@@ -16,11 +16,11 @@ const createPatient = async (data) => {
   // data.password = hashPassword;
 
   const count = await db.Patient.count();
-  const id = generatorID("BN");
+  // const id = generatorID("BN");
 
-  console.log(`count patient: ${count}`);
-  console.log(`id generator: ${id}`);
-  data.patientId = id;
+  // console.log(`count patient: ${count}`);
+  // console.log(`id generator: ${id}`);
+  // data.patientId = id;
 
   return db.Patient.create(data);
 };
@@ -30,11 +30,6 @@ const deletePatient = async (id) => {
     where: { id: id },
   });
 };
-
-function generatorID(key) {
-  const ran = Math.floor(Math.random() * 99999999) + 10000000;
-  return `${key}-${ran}`;
-}
 
 module.exports = {
   getAllPatients,

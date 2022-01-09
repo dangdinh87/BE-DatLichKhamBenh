@@ -3,15 +3,15 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("Schedules", {
       id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
-      },
-      scheduleId: {
         type: Sequelize.STRING,
-        primaryKey: true,
         allowNull: false,
+        primaryKey: true,
+      },
+      startTime: {
+        type: Sequelize.STRING,
+      },
+      endTime: {
+        type: Sequelize.STRING,
       },
       workingDay: {
         type: Sequelize.DATE,
