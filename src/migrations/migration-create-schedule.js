@@ -16,11 +16,14 @@ module.exports = {
       workingDay: {
         type: Sequelize.DATE,
       },
-      maxNumber: {
+      maxNumberTimeSlot: {
         type: Sequelize.INTEGER,
       },
       status: {
         type: Sequelize.BOOLEAN,
+      },
+      priceTimeSlot: {
+        type: Sequelize.STRING,
       },
       doctorId: {
         type: Sequelize.STRING,

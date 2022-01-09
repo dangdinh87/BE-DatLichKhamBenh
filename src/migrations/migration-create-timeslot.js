@@ -13,14 +13,11 @@ module.exports = {
       status: {
         type: Sequelize.BOOLEAN,
       },
-      price: {
-        type: Sequelize.INTEGER,
-      },
       scheduleId: {
         type: Sequelize.STRING,
       },
       orderIndex: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

@@ -18,8 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       startTime: DataTypes.STRING,
       endTime: DataTypes.STRING,
       workingDay: DataTypes.DATE,
-      maxNumber: DataTypes.INTEGER,
+      maxNumberTimeSlot: DataTypes.INTEGER,
       status: DataTypes.BOOLEAN,
+      priceTimeSlot : DataTypes.STRING,
       doctorId: DataTypes.STRING,
     },
     {

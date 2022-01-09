@@ -22,9 +22,8 @@ module.exports = (sequelize, DataTypes) => {
   TimeSlot.init({
     timeSlotValue: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
-    price: DataTypes.INTEGER,
     scheduleId: DataTypes.STRING,
-    orderIndex:DataTypes.NUMBER,
+    orderIndex:DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: "TimeSlot",
