@@ -15,6 +15,10 @@ const getById = async (id) => {
 };
 
 const create = async (formData) => {
+  const date = formData.workingDay;
+  
+  formData.workingDay = formatDate(date)
+  
   return await db.Schedule.create(formData);
 };
 
@@ -33,3 +37,8 @@ const update = async (scheduleId, formData) => {
 };
 
 module.exports = { getAll, getById, create, update };
+
+
+function formatDate (date){
+  return date.split("-").reverse().join("-")
+}

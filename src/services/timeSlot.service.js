@@ -6,12 +6,19 @@ const getAll = async () => {
 };
 
 const createBulk = async (formData, scheduleId) => {
-  formData.map((item) => {
+  formData.arrSchedule.map((item) => {
     item.id = helpers.generatorID("TL");
     item.scheduleId = scheduleId;
   });
+  formData.status =1; // cái status này m mặc định bao nhiêu thì sửa //khoan , status t co goi len ma
 
-  return db.TimeSlot.bulkCreate(formData);
+  console.log("form Data", formData)
+
+  return db.TimeSlot.bulkCreate(formData.arrSchedule);
 };
 
 module.exports = { getAll, createBulk };
+
+// Thieu 1 truong dockerId, form dua vao thieu ne
+// alo, de dua vp
+//Dang mac dinh la BS-01 nghe 

@@ -7,7 +7,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      timeSlotValue: {
+      value: {
         type: Sequelize.STRING,
       },
       status: {

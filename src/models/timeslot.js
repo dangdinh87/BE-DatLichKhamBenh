@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   TimeSlot.init({
-    timeSlotValue: DataTypes.STRING,
+    // day ne
+    value: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
     scheduleId: DataTypes.STRING,
     orderIndex:DataTypes.INTEGER,

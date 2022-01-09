@@ -7,6 +7,9 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
+      rangeTime: {
+        type: Sequelize.FLOAT,
+      },
       startTime: {
         type: Sequelize.STRING,
       },
