@@ -20,6 +20,17 @@ const getById = catchAsync(async (req, res) => {
   return res.send(schedule);
 });
 
+const getOne = catchAsync(async (req, res) => {
+  const schedule = await scheduleService.getOne(req.body);
+  if (!schedule) {
+    throw new ApiError(404, 'users not found');
+  }
+  return res.status(200).json({
+    message: 'Get success',
+    data: schedule
+  });
+});
+
 const create = catchAsync(async (req, res) => {
   console.log(req.body);
   const formData = req.body;
@@ -40,4 +51,4 @@ const update = catchAsync(async (req, res) => {
   const updateSchedule = await scheduleService.update(scheduleId, formData);
 });
 
-module.exports = { getAll, getById, create, update };
+module.exports = { getAll, getById, getOne, create, update };

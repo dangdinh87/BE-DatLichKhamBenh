@@ -1,13 +1,14 @@
 import catchAsync from "../utils/catchAsync";
 import ApiError from "../utils/ApiError ";
-const { authService } = require("../services");
+const { authService, jwtService } = require("../services");
+
 
 const register = catchAsync(async (req, res) => {
   const register = await authService.register(req.body);
   if (!register) {
     throw new ApiError(httpStatus.NOT_FOUND, "register not found");
   }
-  res.send(register);
+  res.status(200).json({ message: 'register success' });
 });
 
 const login = catchAsync(async (req, res) => {
@@ -16,12 +17,18 @@ const login = catchAsync(async (req, res) => {
     throw new ApiError(401, "Vui lòng nhập username và password");
   }
 
-  const checkAccount = await authService.login(username, password);
-
-  if (!checkAccount) {
-    throw new ApiError(401, "Tài khoản hoặc mật khẩu không tồn tại");
+  const info = await authService.login(username, password);
+  console.log(info);
+  if (!info) {
+    throw new ApiError(401, "Username hoặc Password không đúng");
   }
-  res.send("Login thành công");
+
+  const accessToken = await jwtService.signAccessToken()
+  res.status(200).json({
+    message: 'Login thành công',
+    token: accessToken,
+    data: info
+  });
 });
 
 const resetPassword = catchAsync(async (req, res) => {

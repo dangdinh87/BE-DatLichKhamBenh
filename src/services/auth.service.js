@@ -1,29 +1,35 @@
 import bcrypt from "bcrypt";
 const saltRounds = 10;
+import helpers from "../utils/helpers"
 import db from "../models";
 
-const hashPassword = async (password) => {
-  return await bcrypt.hash(password, saltRounds);
-};
 
 const register = async (formData) => {
-  const hashPasswordAccount = await hashPassword(formData.password);
+  const hashPasswordAccount = await bcrypt.hash(formData.password, saltRounds);
+  formData.id = helpers.generatorID('AC');
   formData.password = hashPasswordAccount;
-
   if (formData.typeAccountId == "2") formData.status = 0;
   if (formData.typeAccountId == "3") formData.status = 1;
-
   return db.Account.create(formData);
 };
 
-const login = async (inputUsername, inputPassword) => {
+
+const login = async (username, password) => {
+
+  const checkUsername = await db.Account.findOne({
+    where: { username: username },
+  })
+  const checkPassword = await bcrypt.compare(password, checkUsername.dataValues.password)
+
   const accountDB = await db.Account.findOne({
-    where: { username: inputUsername },
+    where: { username: username },
+    attributes: { exclude: ['password'] },
+    include: db.Doctor
   });
 
-  console.log(`username: ${inputUsername}, password: ${inputPassword}`);
-
-  return await bcrypt.compare(inputPassword, accountDB.password);
+  if (!checkUsername || !checkPassword)
+    return;
+  return accountDB;
 };
 
 module.exports = {

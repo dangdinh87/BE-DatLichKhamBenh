@@ -10,7 +10,7 @@ const createBulk = async (formData, scheduleId) => {
     item.id = helpers.generatorID("TL");
     item.scheduleId = scheduleId;
   });
-  formData.status =1; // cái status này m mặc định bao nhiêu thì sửa //khoan , status t co goi len ma
+  formData.status = 1; // 
 
   console.log("form Data", formData)
 

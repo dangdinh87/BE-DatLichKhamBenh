@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       workingDay: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
       },
       maxNumberTimeSlot: {
         type: Sequelize.INTEGER,

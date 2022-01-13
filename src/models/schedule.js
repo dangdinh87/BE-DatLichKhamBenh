@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   Schedule.init(
     {
-      rangeTime:DataTypes.FLOAT,
+      rangeTime: DataTypes.FLOAT,
       startTime: DataTypes.STRING,
       endTime: DataTypes.STRING,
-      workingDay: DataTypes.DATE,
+      workingDay: DataTypes.STRING,
       maxNumberTimeSlot: DataTypes.INTEGER,
       status: DataTypes.BOOLEAN,
-      priceTimeSlot : DataTypes.STRING,
+      priceTimeSlot: DataTypes.STRING,
       doctorId: DataTypes.STRING,
     },
     {

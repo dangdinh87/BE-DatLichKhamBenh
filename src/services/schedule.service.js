@@ -9,16 +9,22 @@ const getAll = async () => {
 const getById = async (id) => {
   return db.Schedule.findOne({
     where: { id: id },
-    // attributes: { exclude: ["password"] },
+    include: [{ model: db.TimeSlot }],
+  });
+};
+
+const getOne = async (formData) => {
+  return await db.Schedule.findOne({
+    where: { workingDay: formData.workingDay, doctorId: formData.doctorId },
     include: [{ model: db.TimeSlot }],
   });
 };
 
 const create = async (formData) => {
   const date = formData.workingDay;
-  
+
   formData.workingDay = formatDate(date)
-  
+
   return await db.Schedule.create(formData);
 };
 
@@ -36,9 +42,9 @@ const update = async (scheduleId, formData) => {
   );
 };
 
-module.exports = { getAll, getById, create, update };
+module.exports = { getAll, getById, getOne, create, update };
 
 
-function formatDate (date){
+function formatDate(date) {
   return date.split("-").reverse().join("-")
 }
