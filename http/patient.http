@@ -7,7 +7,7 @@ POST http://localhost:8080/patient
 Content-Type: application/json
 
 {
-  "fullName":"Ngọc huy",
+  "fullName":"Ngọc Huy",
   "phone": "0999999999",  
   "email": "huy@gmail.com",  
   "address":"Quảng Nam",  
@@ -16,5 +16,5 @@ Content-Type: application/json
   "status":1,  
   "patientHistory": "hh",  
   "image": "hh",  
-  "accountId": "AC-00000000"
+  "accountId": "AC-101710306"
 }
