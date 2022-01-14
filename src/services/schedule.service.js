@@ -21,10 +21,6 @@ const getOne = async (formData) => {
 };
 
 const create = async (formData) => {
-  const date = formData.workingDay;
-
-  formData.workingDay = formatDate(date)
-
   return await db.Schedule.create(formData);
 };
 
@@ -33,18 +29,7 @@ const update = async (scheduleId, formData) => {
     where: { id: scheduleId },
     include: db.TimeSlot,
   });
-  // scheduleDB.TimeSlots.map((item) => console.log(item));
-
-  console.log("formData---------------------", formData.TimeSlots);
-  console.log(
-    "scheduleDB--------------",
-    scheduleDB.dataValues.TimeSlots.map((item) => item.dataValues)
-  );
 };
 
 module.exports = { getAll, getById, getOne, create, update };
 
-
-function formatDate(date) {
-  return date.split("-").reverse().join("-")
-}

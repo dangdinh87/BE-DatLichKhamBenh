@@ -1,0 +1,25 @@
+
+### getAll
+GET http://localhost:8080/doctor
+
+### Create
+POST http://localhost:8080/doctor
+Content-Type: application/json
+
+{
+  "fullName":"Ngọc Tuan",
+  "phone": "0999999999",  
+  "email": "huy@gmail.com",  
+  "address":"Quảng Nam",  
+  "date":"2022-01-14",  
+  "gender":1,  
+  "status":1,  
+  "workHistory": "hh",  
+  "avatarImage": "hh",  
+  "clinicName": "hh",  
+  "certificateName": "hh",  
+  "licenseName": "hh",  
+  "specialistId": "hh",  
+  "positionId": "hh",  
+  "accountId": "AC-11111111"
+}

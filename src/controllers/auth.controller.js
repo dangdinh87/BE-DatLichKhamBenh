@@ -18,12 +18,13 @@ const login = catchAsync(async (req, res) => {
   }
 
   const info = await authService.login(username, password);
-  console.log(info);
+
   if (!info) {
     throw new ApiError(401, "Username hoặc Password không đúng");
   }
 
-  const accessToken = await jwtService.signAccessToken()
+  const accountIdByInfo = info.dataValues.id
+  const accessToken = await jwtService.signAccessToken(accountIdByInfo)
   res.status(200).json({
     message: 'Login thành công',
     token: accessToken,
@@ -31,14 +32,11 @@ const login = catchAsync(async (req, res) => {
   });
 });
 
-const resetPassword = catchAsync(async (req, res) => {
-  const { user, password } = req.body;
+const logout = catchAsync(async (req, res) => {
+  console.log(req.payload.accountId);
+  if (!req.payload.accountId)
+    return res.json({ message: 'Logout success' })
+})
 
-  console.log(user, password);
-  // if (!users) {
-  //   throw new ApiError(httpStatus.NOT_FOUND, 'users not found');
-  // }
-  // res.send(users);
-});
 
-module.exports = { register, login };
+module.exports = { register, login, logout };

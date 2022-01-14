@@ -1,28 +1,14 @@
-import bcrypt from "bcryptjs";
-import res from "express/lib/response";
 import db from "../models";
-const salt = bcrypt.genSaltSync(10);
+import { generatorID } from '../utils/helpers'
 
-const hashUserPassword = async (password) => {
-  return bcrypt.hashSync(password, salt);
-};
-
-const getAllPatients = async () => {
+const getAll = async () => {
   return db.Patient.findAll({});
 };
 
-const createPatient = async (data) => {
-  // const hashPassword = hashUserPassword(data.password);
-  // data.password = hashPassword;
-
-  const count = await db.Patient.count();
-  // const id = generatorID("BN");
-
-  // console.log(`count patient: ${count}`);
-  // console.log(`id generator: ${id}`);
-  // data.patientId = id;
-
-  return db.Patient.create(data);
+const create = async (formData) => {
+  formData.id = generatorID("PT");
+  console.log(formData);
+  return db.Patient.create(formData);
 };
 
 const deletePatient = async (id) => {
@@ -32,7 +18,7 @@ const deletePatient = async (id) => {
 };
 
 module.exports = {
-  getAllPatients,
-  createPatient,
+  getAll,
+  create,
   deletePatient,
 };

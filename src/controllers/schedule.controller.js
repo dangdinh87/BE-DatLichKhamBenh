@@ -2,7 +2,7 @@ import { scheduleService } from '../services';
 import { timeSlotService } from '../services';
 import ApiError from '../utils/ApiError ';
 import catchAsync from '../utils/catchAsync';
-import helpers from '../utils/helpers';
+import { generatorID } from '../utils/helpers';
 
 const getAll = catchAsync(async (req, res) => {
   const schedules = await scheduleService.getAll();
@@ -23,10 +23,10 @@ const getById = catchAsync(async (req, res) => {
 const getOne = catchAsync(async (req, res) => {
   const schedule = await scheduleService.getOne(req.body);
   if (!schedule) {
-    throw new ApiError(404, 'users not found');
+    throw new ApiError(404, 'Get schedule fail');
   }
   return res.status(200).json({
-    message: 'Get success',
+    message: 'Get schedule success',
     data: schedule
   });
 });
@@ -34,15 +34,21 @@ const getOne = catchAsync(async (req, res) => {
 const create = catchAsync(async (req, res) => {
   console.log(req.body);
   const formData = req.body;
-  formData.id = helpers.generatorID('SD');
+  formData.id = generatorID('SD');
 
-  await timeSlotService.createBulk(formData, formData.id);
-  const createSchedule = await scheduleService.create(formData);
-
-  if (!createSchedule) {
-    throw new ApiError(404, 'users not found');
+  const createTimeSlot = await timeSlotService.createBulk(formData, formData.id);
+  if (!createTimeSlot) {
+    throw new ApiError(404, 'Create TimeSlot fail');
   }
-  return res.send(createSchedule);
+
+  const createSchedule = await scheduleService.create(formData);
+  if (!createSchedule) {
+    throw new ApiError(404, 'Create schedule fail');
+  }
+
+  return res.status(200).json({
+    message: 'Create schedule success'
+  });
 });
 
 const update = catchAsync(async (req, res) => {

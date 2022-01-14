@@ -1,12 +1,12 @@
 import bcrypt from "bcrypt";
 const saltRounds = 10;
-import helpers from "../utils/helpers"
+import { generatorID } from "../utils/helpers"
 import db from "../models";
 
 
 const register = async (formData) => {
   const hashPasswordAccount = await bcrypt.hash(formData.password, saltRounds);
-  formData.id = helpers.generatorID('AC');
+  formData.id = generatorID('AC');
   formData.password = hashPasswordAccount;
   if (formData.typeAccountId == "2") formData.status = 0;
   if (formData.typeAccountId == "3") formData.status = 1;
@@ -31,6 +31,10 @@ const login = async (username, password) => {
     return;
   return accountDB;
 };
+
+const logout = async (req, res) => {
+  //
+}
 
 module.exports = {
   register,
