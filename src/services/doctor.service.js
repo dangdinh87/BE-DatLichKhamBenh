@@ -1,20 +1,28 @@
-import db from "../models";
-import {
-  generatorID
-} from '../utils/helpers'
+import db from '../models';
+import { generatorID } from '../utils/helpers';
 
-const getAll = async () => {
-  return db.Doctor.findAll({});
+const getAll = async (limit, skip, search) => {
+  return db.Doctor.findAll({
+    limit: limit,
+    offset: skip, // số lượng phần tử bỏ qua
+  });
+};
+
+const getById = async (id) => {
+  return db.Doctor.findOne({
+    where: { id: id },
+    include: [db.Position, db.Specialist],
+  });
 };
 
 const create = async (formData) => {
-  formData.id = generatorID("DT");
+  formData.id = generatorID('DT');
   console.log(formData);
   return db.Doctor.create(formData);
 };
 
-
 module.exports = {
   getAll,
+  getById,
   create,
 };

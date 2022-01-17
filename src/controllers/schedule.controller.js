@@ -7,28 +7,29 @@ import { generatorID } from '../utils/helpers';
 const getAll = catchAsync(async (req, res) => {
   const schedules = await scheduleService.getAll();
   if (!schedules) {
-    throw new ApiError(404, 'users not found');
+    return res
+      .status(400)
+      .json({ message: 'Không tìm thấy danh sách lịch khám' });
   }
-  return res.send(schedules);
+  return res
+    .status(200)
+    .json({ message: 'Danh sách lịch khám', data: schedules });
 });
 
 const getById = catchAsync(async (req, res) => {
   const schedule = await scheduleService.getById(req.params.id);
   if (!schedule) {
-    throw new ApiError(404, 'users not found');
+    return res.status(400).json({ message: 'Không tìm thấy lịch khám' });
   }
-  return res.send(schedule);
+  return res.status(200).json({ message: 'Tìm thấy lịch khám' });
 });
 
 const getOne = catchAsync(async (req, res) => {
   const schedule = await scheduleService.getOne(req.body);
   if (!schedule) {
-    throw new ApiError(404, 'Get schedule fail');
+    return res.status(400).json({ message: 'Không tìm thấy lịch khám' });
   }
-  return res.status(200).json({
-    message: 'Get schedule success',
-    data: schedule
-  });
+  return res.status(200).json({ message: 'Tìm thấy lịch khám' });
 });
 
 const create = catchAsync(async (req, res) => {
@@ -36,18 +37,21 @@ const create = catchAsync(async (req, res) => {
   const formData = req.body;
   formData.id = generatorID('SD');
 
-  const createTimeSlot = await timeSlotService.createBulk(formData, formData.id);
+  const createTimeSlot = await timeSlotService.createBulk(
+    formData,
+    formData.id
+  );
   if (!createTimeSlot) {
-    throw new ApiError(404, 'Create TimeSlot fail');
+    return res.status(400).json({ message: 'Thêm khung giờ thất bại' });
   }
 
   const createSchedule = await scheduleService.create(formData);
   if (!createSchedule) {
-    throw new ApiError(404, 'Create schedule fail');
+    return res.status(400).json({ message: 'Thêm lịch khám thất bại' });
   }
 
   return res.status(200).json({
-    message: 'Create schedule success'
+    message: 'Thêm lịch khám thành công',
   });
 });
 

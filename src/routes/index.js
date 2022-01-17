@@ -1,31 +1,37 @@
-const express = require("express");
-const authRoute = require("./auth.route");
-const scheduleRoute = require("./schedule.route");
-const timeSlotRoute = require("./timeSlot.route");
-const patientRoute = require("./patient.route");
-const doctorRoute = require("./doctor.route");
+const express = require('express');
+const authRoute = require('./auth.route');
+const scheduleRoute = require('./schedule.route');
+const timeSlotRoute = require('./timeSlot.route');
+const patientRoute = require('./patient.route');
+const doctorRoute = require('./doctor.route');
+const bookingRoute = require('./booking.route');
 
 const router = express.Router();
 
-const defaultRoutes = [{
-    path: "/auth",
+const defaultRoutes = [
+  {
+    path: '/auth',
     route: authRoute,
   },
   {
-    path: "/schedule",
+    path: '/schedule',
     route: scheduleRoute,
   },
   {
-    path: "/time-slot",
+    path: '/time-slot',
     route: timeSlotRoute,
   },
   {
-    path: "/patient",
+    path: '/patient',
     route: patientRoute,
   },
   {
-    path: "/doctor",
+    path: '/doctor',
     route: doctorRoute,
+  },
+  {
+    path: '/booking',
+    route: bookingRoute,
   },
 ];
 

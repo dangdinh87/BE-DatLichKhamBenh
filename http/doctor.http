@@ -2,12 +2,16 @@
 ### getAll
 GET http://localhost:8080/doctor
 
+### getById
+GET http://localhost:8080/doctor/DT-63186989
+
+
 ### Create
 POST http://localhost:8080/doctor
 Content-Type: application/json
 
 {
-  "fullName":"Thanh Tuấn",
+  "fullName":"Lê Nga",
   "phone": "0999999999",  
   "email": "huy@gmail.com",  
   "address":"Quảng Nam",  
@@ -21,5 +25,5 @@ Content-Type: application/json
   "licenseName": "hh",  
   "specialistId": "hh",  
   "positionId": "hh",  
-  "accountId": "AC-109024121"
+  "accountId": "AC-70760975"
 }

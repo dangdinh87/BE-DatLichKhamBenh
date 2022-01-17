@@ -5,12 +5,16 @@ const { authService, jwtService } = require('../services');
 const register = catchAsync(async (req, res) => {
   const register = await authService.register(req.body);
   if (!register) {
-    res.status(400).json({
-      message: 'Đăng kí thất bại',
+    return res.status(400).json({
+      message: 'Đăng kí thất bại, tên đăng nhập đã tồn tại',
     });
   }
-  res.status(200).json({
+
+  const { password, ...newRegister } = register.dataValues;
+
+  return res.status(200).json({
     message: 'Đăng kí thành công',
+    data: newRegister,
   });
 });
 

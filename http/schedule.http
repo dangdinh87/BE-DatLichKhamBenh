@@ -1,12 +1,12 @@
 
 ### GetOneSchedule  by workingDay and dockerId
-GET http://localhost:8080/schedule/wd-dt/check HTTP/1.1
+GET http://localhost:8080/schedule/ HTTP/1.1
 content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy0zOTk5Nzg1OCIsImlhdCI6MTY0MjEyOTk2MiwiZXhwIjoxNjQyMTMzNTYyfQ.4WloRPl6hHpHLjsuYgKZ2OceXTS_ib2kJ5ZJi-xTVFA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy04MTU2ODA4MyIsImlhdCI6MTY0MjE2OTc5MSwiZXhwIjoxNjQyMTczMzkxfQ.m8Vs52X_3XdbGSnh8NAPVzhQKgSSuQ6WHgae2flbdcc
 
 {
-  "workingDay": "1642018095",
-  "doctorId":"DT-8776823"
+  "workingDay": "2222222222",
+  "doctorId":"DT-69657815"
 }
 
 
@@ -15,11 +15,11 @@ POST http://localhost:8080/schedule HTTP/1.1
 content-Type: application/json
 
 {
-  "workingDay": "2222222222",
+  "workingDay": "44444444",
   "startTime": 7,
   "endTime": 8,
   "priceTimeSlot": 10000,
-  "maxNumberTimeSlot": 2,
+  "maxNumberTimeSlot": 5,
   "rangeTime": 0.5,
   "arrSchedule": [
     {
@@ -33,7 +33,6 @@ content-Type: application/json
       "status": 1
     }
   ],
-  "doctorId":"DT-8776823",
-  "id": "SD-36325781",
+  "doctorId":"DT-28147879",
   "status": 1
 }

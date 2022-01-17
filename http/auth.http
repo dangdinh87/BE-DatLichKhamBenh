@@ -14,7 +14,7 @@ content-Type: application/json
 {
   "username":"dangdinh",
   "password":"123456",
-  "typeAccountId":"3"
+  "typeAccountId":"2"
 }
 
 ### Logout

@@ -1,30 +1,63 @@
-import catchAsync from "../utils/catchAsync";
-import ApiError from "../utils/ApiError ";
-const {
-  doctorService
-} = require("../services");
+import catchAsync from '../utils/catchAsync';
+import ApiError from '../utils/ApiError ';
+const { doctorService } = require('../services');
 
 const getAll = catchAsync(async (req, res) => {
-  const doctors = await doctorService.getAll();
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 5;
+  const skip = limit * (page - 1);
+  const search = req.query.search;
+
+  const doctors = await doctorService.getAll(limit, skip);
   if (!doctors) {
-    throw new ApiError(404, "Get doctors fail");
+    return res.status(400).json({ message: 'Không tìm thấy danh sách bác sĩ' });
   }
   return res.status(200).json({
-    message: 'Get doctors success',
-    data: doctors
+    message: 'Danh sách scác sĩ',
+    data: doctors,
+  });
+});
+
+const getById = catchAsync(async (req, res) => {
+  const doctor = await doctorService.getById(req.params.id);
+  if (!doctor) {
+    return res.status(400).json({
+      message: 'Không tìm thấy bác sĩ',
+    });
+  }
+  return res.status(200).json({
+    message: 'Tìm thấy bác sĩ',
+    data: doctor,
   });
 });
 
 const create = catchAsync(async (req, res) => {
   const createDoctor = await doctorService.create(req.body);
   if (!createDoctor) {
-    throw new ApiError(404, "Create doctor fail");
+    return res.status(400).json({
+      message: 'Cập nhật thất bại',
+    });
   }
-  res.status(200).json({
-    message: "Create doctor success"
+  return res.status(200).json({
+    message: 'Cập nhật thành công',
   });
 });
+
+const update = catchAsync(async (req, res) => {
+  const updateDoctor = await doctorService.create(req.body);
+  if (!updateDoctor) {
+    return res.status(400).json({
+      message: 'Cập nhật thất bại',
+    });
+  }
+  return res.status(200).json({
+    message: 'Cập nhật thành công',
+  });
+});
+
 module.exports = {
   getAll,
+  getById,
   create,
+  update,
 };
