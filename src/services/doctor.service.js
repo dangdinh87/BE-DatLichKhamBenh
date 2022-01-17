@@ -1,14 +1,18 @@
 import db from '../models';
 import { generatorID } from '../utils/helpers';
 
-const getAll = async () => {
+const getAll = async (limit, skip, search) => {
   return db.Doctor.findAll({
-    include: [db.Position, db.Specialist]
-});
+    limit: limit,
+    offset: skip, // số lượng phần tử bỏ qua
+  });
 };
 
 const getById = async (id) => {
-  return db.Doctor.findOne({});
+  return db.Doctor.findOne({
+    where: { id: id },
+    include: [db.Position, db.Specialist],
+  });
 };
 
 const create = async (formData) => {
@@ -18,6 +22,6 @@ const create = async (formData) => {
 
 module.exports = {
   getAll,
+  getById,
   create,
-  getById
 };

@@ -1,26 +1,30 @@
-"use strict";
+'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Bookings", {
+    await queryInterface.createTable('Bookings', {
       id: {
         type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true,
       },
       dateBooking: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
       },
       reasonExamination: {
         type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.ENUM('BOOKED','COMPLETED','CANCELLED'),
+        type: Sequelize.ENUM('BOOKED', 'COMPLETED', 'CANCELED'),
       },
       patientId: {
         type: Sequelize.STRING,
       },
       timeSlotId: {
         type: Sequelize.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
@@ -29,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Bookings");
+    await queryInterface.dropTable('Bookings');
   },
 };

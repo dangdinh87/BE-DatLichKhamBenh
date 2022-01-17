@@ -4,7 +4,14 @@ import { generatorID } from '../utils/helpers';
 import db from '../models';
 
 const register = async (formData) => {
-  console.log(formData, 'service');
+  const checkUsername = await db.Account.findOne({
+    where: { username: formData.username },
+  });
+
+  if (checkUsername) {
+    return;
+  }
+
   const hashPasswordAccount = await bcrypt.hash(formData.password, saltRounds);
   formData.id = generatorID('AC');
   formData.password = hashPasswordAccount;
@@ -17,7 +24,7 @@ const register = async (formData) => {
 const login = async (username, password) => {
   const checkUsername = await db.Account.findOne({
     where: {
-      username: username
+      username: username,
     },
     raw: true
   });
@@ -38,7 +45,7 @@ const login = async (username, password) => {
       username: username
     },
     attributes: {
-      exclude: ['password']
+      exclude: ['password'],
     },
     include: dbInclude
   });

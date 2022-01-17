@@ -1,47 +1,45 @@
-import jwt from 'jsonwebtoken'
-import createError from 'http-errors'
+import jwt from 'jsonwebtoken';
+import createError from 'http-errors';
 
 const signAccessToken = async (accountId) => {
   return new Promise(function (resolve, reject) {
     const payload = {
       accountId,
-    }
+    };
     const secret = process.env.ACCESS_TOKEN_SECRET;
     const options = {
-      expiresIn: '1h'
-    }
+      expiresIn: '1h',
+    };
     jwt.sign(payload, secret, options, (err, token) => {
-      if (err) reject(err)
-      resolve(token)
-    })
-  })
-}
-
+      if (err) reject(err);
+      resolve(token);
+    });
+  });
+};
 
 const verifyAccessToken = (req, res, next) => {
   if (!req.headers['authorization']) {
-    return next(createError.Unauthorized()) // token ko tồn tại 
+    return next(createError.Unauthorized()); // token ko tồn tại
   }
-  const authHeader = req.headers['authorization']
+  const authHeader = req.headers['authorization'];
   const bearerToken = authHeader.split(' ');
-  const token = bearerToken[1]
+  const token = bearerToken[1];
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
     if (err) {
       if (err.name === 'JsonWebTokenError') {
-        return next(createError.Unauthorized())
+        return next(createError.Unauthorized());
       }
-      return next(createError.Unauthorized(err.message)) // Token hết hạn
+      return next(createError.Unauthorized(err.message)); // Token hết hạn
     }
     req.payload = payload;
-    next()
-  })
-}
-
+    next();
+  });
+};
 
 module.exports = {
   signAccessToken,
-  verifyAccessToken
-}
+  verifyAccessToken,
+};
 
 /** 
 JsonWebTokenError

@@ -2,6 +2,9 @@
 ### getAll
 GET http://localhost:5000/patient
 
+### getId
+GET http://localhost:8080/patient/PT-14705825
+
 ### Create
 POST http://localhost:5000/patient
 Content-Type: application/json

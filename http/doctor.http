@@ -3,6 +3,10 @@
 GET http://localhost:5000/doctor 
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy04Mjc3NDc0OSIsImlhdCI6MTY0MjIxODE5MiwiZXhwIjoxNjQyMjIxNzkyfQ.hnI134ve7nFipqY2YotYL4xzbLV02Q--g0h8i78Zu3I
 
+### getById
+GET http://localhost:8080/doctor/DT-63186989
+
+
 ### Create
 POST http://localhost:5000/doctor
 Content-Type: application/json
