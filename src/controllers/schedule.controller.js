@@ -7,23 +7,27 @@ import { generatorID } from '../utils/helpers';
 const getAll = catchAsync(async (req, res) => {
   const schedules = await scheduleService.getAll();
   if (!schedules) {
-    throw new ApiError(404, 'users not found');
+    throw new ApiError(400, 'Không tìm thấy lích khám');
   }
   return res.send(schedules);
 });
 
 const getById = catchAsync(async (req, res) => {
+  console.log('zo day');
   const schedule = await scheduleService.getById(req.params.id);
   if (!schedule) {
-    throw new ApiError(404, 'users not found');
+    throw new ApiError(400, 'Không tìm thấy lịch khám');
   }
   return res.send(schedule);
 });
 
 const getOne = catchAsync(async (req, res) => {
-  const schedule = await scheduleService.getOne(req.body);
+  const schedule = await scheduleService.getOne(req.query);
   if (!schedule) {
-    throw new ApiError(404, 'Get schedule fail');
+    res.status(400).json({
+      message: 'Khong co lich',
+      data: []
+    });
   }
   return res.status(200).json({
     message: 'Get schedule success',
@@ -32,11 +36,13 @@ const getOne = catchAsync(async (req, res) => {
 });
 
 const create = catchAsync(async (req, res) => {
-  console.log(req.body);
   const formData = req.body;
   formData.id = generatorID('SD');
 
-  const createTimeSlot = await timeSlotService.createBulk(formData, formData.id);
+  const createTimeSlot = await timeSlotService.createBulk(
+    formData,
+    formData.id
+  );
   if (!createTimeSlot) {
     throw new ApiError(404, 'Create TimeSlot fail');
   }

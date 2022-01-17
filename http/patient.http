@@ -1,13 +1,13 @@
 
 ### getAll
-GET http://localhost:8080/patient
+GET http://localhost:5000/patient
 
 ### Create
-POST http://localhost:8080/patient
+POST http://localhost:5000/patient
 Content-Type: application/json
 
 {
-  "fullName":"Ngọc Huy",
+  "fullName":"nguyễn đăng định",
   "phone": "0999999999",  
   "email": "huy@gmail.com",  
   "address":"Quảng Nam",  
@@ -16,5 +16,5 @@ Content-Type: application/json
   "status":1,  
   "patientHistory": "hh",  
   "image": "hh",  
-  "accountId": "AC-101710306"
+  "accountId": "AC-68960301"
 }

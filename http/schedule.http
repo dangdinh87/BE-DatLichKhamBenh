@@ -1,17 +1,16 @@
 
 ### GetOneSchedule  by workingDay and dockerId
-GET http://localhost:8080/schedule/wd-dt/check HTTP/1.1
+GET http://localhost:5000/schedule/get-schedule-by-date HTTP/1.1
 content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy0zOTk5Nzg1OCIsImlhdCI6MTY0MjEyOTk2MiwiZXhwIjoxNjQyMTMzNTYyfQ.4WloRPl6hHpHLjsuYgKZ2OceXTS_ib2kJ5ZJi-xTVFA
 
 {
-  "workingDay": "1642018095",
-  "doctorId":"DT-8776823"
+  "workingDay": "2222222222",
+  "doctorId":"DT-38211003"
 }
 
 
 ### Create Schedule
-POST http://localhost:8080/schedule HTTP/1.1
+POST http://localhost:5000/schedule HTTP/1.1
 content-Type: application/json
 
 {
@@ -33,7 +32,7 @@ content-Type: application/json
       "status": 1
     }
   ],
-  "doctorId":"DT-8776823",
+  "doctorId":"DT-38211003",
   "id": "SD-36325781",
   "status": 1
 }

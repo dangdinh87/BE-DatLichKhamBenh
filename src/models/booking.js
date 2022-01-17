@@ -20,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.BOOLEAN,
       patientId: DataTypes.STRING,
       timeSlotId: DataTypes.STRING,
-      timeType: DataTypes.STRING,
     },
     {
       sequelize,

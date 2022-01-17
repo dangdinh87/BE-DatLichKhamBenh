@@ -1,13 +1,11 @@
-import catchAsync from "../utils/catchAsync";
-import ApiError from "../utils/ApiError ";
-const {
-  doctorService
-} = require("../services");
+import catchAsync from '../utils/catchAsync';
+import ApiError from '../utils/ApiError ';
+const { doctorService } = require('../services');
 
 const getAll = catchAsync(async (req, res) => {
   const doctors = await doctorService.getAll();
   if (!doctors) {
-    throw new ApiError(404, "Get doctors fail");
+    throw new ApiError(404, 'Get doctors fail');
   }
   return res.status(200).json({
     message: 'Get doctors success',
@@ -15,16 +13,28 @@ const getAll = catchAsync(async (req, res) => {
   });
 });
 
+const getById = catchAsync(async (req, res) => {
+  const doctors = await doctorService.getById(req.params.id);
+  if (!doctors) {
+    throw new ApiError(404, 'Get doctors fail');
+  }
+  return res.status(200).json({
+    message: 'Get doctor success',
+    data: doctors
+  });
+});
+
 const create = catchAsync(async (req, res) => {
   const createDoctor = await doctorService.create(req.body);
   if (!createDoctor) {
-    throw new ApiError(404, "Create doctor fail");
+    throw new ApiError(404, 'Create doctor fail');
   }
   res.status(200).json({
-    message: "Create doctor success"
+    message: 'Create doctor success'
   });
 });
 module.exports = {
   getAll,
   create,
+  getById
 };

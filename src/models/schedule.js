@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       endTime: DataTypes.STRING,
       workingDay: DataTypes.STRING,
       maxNumberTimeSlot: DataTypes.INTEGER,
-      status: DataTypes.BOOLEAN,
+      status: DataTypes.ENUM('BOOKED', 'COMPLETED', 'CANCELLED'),
       priceTimeSlot: DataTypes.STRING,
       doctorId: DataTypes.STRING,
     },

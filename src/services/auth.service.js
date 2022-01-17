@@ -1,70 +1,52 @@
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 const saltRounds = 10;
-import {
-  generatorID
-} from "../utils/helpers"
-import db from "../models";
-
+import { generatorID } from '../utils/helpers';
+import db from '../models';
 
 const register = async (formData) => {
+  console.log(formData, 'service');
   const hashPasswordAccount = await bcrypt.hash(formData.password, saltRounds);
   formData.id = generatorID('AC');
   formData.password = hashPasswordAccount;
-  if (formData.typeAccountId == "1" || formData.typeAccountId == "3") formData.status = 1;
-  if (formData.typeAccountId == "2") formData.status = 0;
+  if (formData.typeAccountId == '1' || formData.typeAccountId == '3')
+    formData.status = 1;
+  if (formData.typeAccountId == '2') formData.status = 0;
   return db.Account.create(formData);
 };
 
-
 const login = async (username, password) => {
-
   const checkUsername = await db.Account.findOne({
     where: {
       username: username
     },
     raw: true
-  })
-  if (!checkUsername)
-    return;
+  });
+  if (!checkUsername) return;
 
-  const checkPassword = await bcrypt.compare(password, checkUsername.password)
-  if (!checkPassword)
-    return;
+  const checkPassword = await bcrypt.compare(password, checkUsername.password);
+  if (!checkPassword) return;
 
-  const dbInclude = (checkUsername.typeAccountId == 1 ? db.Patient : (checkUsername.typeAccountId == 2 ? db.Doctor : db.Admin));
+  const dbInclude =
+    checkUsername.typeAccountId == 1
+      ? db.Patient
+      : checkUsername.typeAccountId == 2
+      ? db.Doctor
+      : db.Admin;
 
   return await db.Account.findOne({
     where: {
-      username: username,
-
+      username: username
     },
     attributes: {
       exclude: ['password']
     },
-    include: dbInclude,
-
-  })
+    include: dbInclude
+  });
 };
 
-const logout = async (req, res) => {
-  //
-}
+const logout = async (req, res) => {};
 
 module.exports = {
   register,
-  login,
+  login
 };
-
-// import bcrypt from "bcryptjs";
-// const salt = bcrypt.genSaltSync(10);
-
-// const hashPassword = async (password) => {
-//   return bcrypt.hashSync(password, salt);
-// };
-
-// const register = async (formData) => {
-//   const hashPasswordAccount = hashPassword(formData.password);
-//   formData.password = hashPasswordAccount;
-//   console.log(formData);
-//   return db.User.create(data);
-// };

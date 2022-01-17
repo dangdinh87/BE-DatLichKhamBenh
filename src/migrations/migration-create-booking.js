@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.ENUM('BOOKED','COMPLETED','CANCELLED'),
       },
       patientId: {
         type: Sequelize.STRING,
@@ -22,10 +22,6 @@ module.exports = {
       timeSlotId: {
         type: Sequelize.STRING,
       },
-      timeType: {
-        type: Sequelize.STRING,
-      },
-
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,

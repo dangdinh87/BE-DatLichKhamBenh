@@ -1,16 +1,15 @@
-import express from "express";
-import {
-  scheduleController
-} from "../controllers";
-import {
-  verifyAccessToken
-} from "../services/token.service"
+import express from 'express';
+import { scheduleController } from '../controllers';
+import { verifyAccessToken } from '../services/token.service';
+import { auth } from '../middleware/auth.middleware';
 const router = express.Router();
 
-router.get("/", scheduleController.getAll);
-router.post("/", scheduleController.create);
-router.get("/:id", scheduleController.getById);
-router.post("/:id", scheduleController.update);
-router.get("/wd-dt/check", verifyAccessToken, scheduleController.getOne);
+router.get('/', scheduleController.getAll);
+router.get('/get-schedule-by-date', scheduleController.getOne);
+router.get('/:id', scheduleController.getById);
+router.post('/', scheduleController.create);
+router.post('/:id', scheduleController.update);
+
+// verifyAccessToken,
 
 module.exports = router;
