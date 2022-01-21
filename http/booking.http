@@ -1,18 +1,18 @@
 
 ### getByPatientId
-GET http://localhost:8080/booking/patient/PT-71377913?limit=5&page=2
+GET http://localhost:5000/booking/patient/PT-71377913?limit=5&page=2
 
 ### getByDateBooking
-GET http://localhost:8080/booking/date-booking/1111111111 
+GET http://localhost:5000/booking/date-booking/1111111111 
 
 
 ### create
-POST http://localhost:8080/booking
+POST http://localhost:5000/booking
 Content-Type: application/json
 
 {
-    "dateBooking":"3333333333",
+    "dateBooking":"5555555555",
     "reasonExamination":"abc",
-    "patientId":"PT-71377913",
-    "timeSlotId":"TL-87244116"
+    "patientId":"PT-59042664",
+    "timeSlotId":"TL-62597440"
 }

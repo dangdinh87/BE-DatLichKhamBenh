@@ -7,13 +7,9 @@ import { generatorID } from '../utils/helpers';
 const getAll = catchAsync(async (req, res) => {
   const schedules = await scheduleService.getAll();
   if (!schedules) {
-<<<<<<< HEAD
-    throw new ApiError(400, 'Không tìm thấy lích khám');
-=======
     return res
       .status(400)
       .json({ message: 'Không tìm thấy danh sách lịch khám' });
->>>>>>> aa691a7b0d8c3909483905add32827b4e6acd9bf
   }
   return res
     .status(200)
@@ -21,14 +17,9 @@ const getAll = catchAsync(async (req, res) => {
 });
 
 const getById = catchAsync(async (req, res) => {
-  console.log('zo day');
   const schedule = await scheduleService.getById(req.params.id);
   if (!schedule) {
-<<<<<<< HEAD
-    throw new ApiError(400, 'Không tìm thấy lịch khám');
-=======
     return res.status(400).json({ message: 'Không tìm thấy lịch khám' });
->>>>>>> aa691a7b0d8c3909483905add32827b4e6acd9bf
   }
   return res.status(200).json({ message: 'Tìm thấy lịch khám' });
 });
@@ -41,7 +32,9 @@ const getOne = catchAsync(async (req, res) => {
       data: []
     });
   }
-  return res.status(200).json({ message: 'Tìm thấy lịch khám' });
+  return res
+    .status(200)
+    .json({ message: 'Tìm thấy lịch khám', data: schedule });
 });
 
 const create = catchAsync(async (req, res) => {
@@ -62,7 +55,7 @@ const create = catchAsync(async (req, res) => {
   }
 
   return res.status(200).json({
-    message: 'Thêm lịch khám thành công',
+    message: 'Thêm lịch khám thành công'
   });
 });
 

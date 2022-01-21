@@ -3,14 +3,14 @@
 GET http://localhost:5000/patient
 
 ### getId
-GET http://localhost:8080/patient/PT-14705825
+GET http://localhost:5000/patient/PT-14705825
 
 ### Create
 POST http://localhost:5000/patient
 Content-Type: application/json
 
 {
-  "fullName":"nguyễn đăng định",
+  "fullName":"Bùi Phú Ân",
   "phone": "0999999999",  
   "email": "huy@gmail.com",  
   "address":"Quảng Nam",  

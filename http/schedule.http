@@ -32,11 +32,7 @@ content-Type: application/json
       "status": 1
     }
   ],
-<<<<<<< HEAD
-  "doctorId":"DT-38211003",
-  "id": "SD-36325781",
-=======
-  "doctorId":"DT-28147879",
->>>>>>> aa691a7b0d8c3909483905add32827b4e6acd9bf
+  "doctorId":"AC-68960301",
+
   "status": 1
 }
