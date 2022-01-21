@@ -12,12 +12,26 @@ const register = async (formData) => {
     return;
   }
 
+  let checkDbByTypeAccountId;
+
   const hashPasswordAccount = await bcrypt.hash(formData.password, saltRounds);
   formData.id = generatorID('AC');
   formData.password = hashPasswordAccount;
-  if (formData.typeAccountId == '1' || formData.typeAccountId == '3')
+  if (formData.typeAccountId == '1') {
     formData.status = 1;
-  if (formData.typeAccountId == '2') formData.status = 0;
+    checkDbByTypeAccountId = db.Patient;
+  }
+
+  if (formData.typeAccountId == '2') {
+    formData.status = 0;
+    checkDbByTypeAccountId = db.Doctor;
+  }
+
+  await checkDbByTypeAccountId.create({
+    id: generatorID('DT'),
+    accountId: formData.id,
+  });
+
   return db.Account.create(formData);
 };
 
@@ -47,7 +61,7 @@ const login = async (username, password) => {
     attributes: {
       exclude: ['password'],
     },
-    include: dbInclude
+    include: dbInclude,
   });
 };
 

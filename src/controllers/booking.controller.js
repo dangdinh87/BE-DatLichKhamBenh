@@ -40,7 +40,13 @@ const getByDateBooking = catchAsync(async (req, res) => {
 
 // Patient
 const create = catchAsync(async (req, res) => {
-  const createBooking = await bookingService.create(req.body);
+  const formData = req.body;
+  if (formData.email == null) {
+    return res.status(400).json({
+      message: 'Không có email!!!!',
+    });
+  }
+  const createBooking = await bookingService.create(formData);
   if (!createBooking) {
     return res.status(400).json({
       message: 'Đặt lịch khám thất bại, số lượng đã đầy',
@@ -48,11 +54,31 @@ const create = catchAsync(async (req, res) => {
   }
   return res.status(200).json({
     message: 'Đặt lịch khám thành công',
+    data: createBooking,
   });
 });
 
+const verifyBooking = catchAsync(async (req, res) => {
+  const booking = await bookingService.verifyBooking(req.body);
+  if (booking === '0') {
+    return res
+      .status(400)
+      .json({ message: 'Lịch khám không tồn tại 😤', status: 0 });
+  }
+  if (booking === '1') {
+    return res
+      .status(400)
+      .json({ message: 'Lịch khám đã được xác nhận 🥲 ', status: 0 });
+  }
+  if (booking === '2') {
+    return res
+      .status(200)
+      .json({ message: 'Xác nhận đặt lịch thành công 😊 ', status: 0 });
+  }
+});
 module.exports = {
   getByPatientId,
   getByDateBooking,
   create,
+  verifyBooking,
 };

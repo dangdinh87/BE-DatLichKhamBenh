@@ -4,12 +4,16 @@ import { verifyAccessToken } from '../services/token.service';
 import { auth } from '../middleware/auth.middleware';
 const router = express.Router();
 
-router.get('/', scheduleController.getAll);
-router.get('/get-schedule-by-date', scheduleController.getOne);
-router.get('/:id', scheduleController.getById);
-router.post('/', scheduleController.create);
-router.post('/:id', scheduleController.update);
+router
+  .route('/')
+  .get(scheduleController.getAll)
+  .post(scheduleController.create);
 
-// verifyAccessToken,
+router
+  .route('/:id')
+  .get(scheduleController.getById)
+  .put(scheduleController.update);
+
+router.get('/wd-dt/check', auth, scheduleController.getOne);
 
 module.exports = router;

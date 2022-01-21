@@ -3,9 +3,12 @@ import { patientController } from '../controllers';
 
 const router = express.Router();
 
-router.get('/', patientController.getAll);
-router.post('/', patientController.create);
-router.get('/:id', patientController.getById);
-router.delete('/:id', patientController.deletePatient);
+router.route('/').get(patientController.getAll).post(patientController.create);
+
+router
+  .route('/:id')
+  .get(patientController.getById)
+  .put(patientController.update)
+  .delete(patientController.deletePatient);
 
 module.exports = router;

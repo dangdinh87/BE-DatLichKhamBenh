@@ -14,7 +14,7 @@ POST http://localhost:5000/schedule HTTP/1.1
 content-Type: application/json
 
 {
-  "workingDay": "44444444",
+  "workingDay": "555555555",
   "startTime": 7,
   "endTime": 8,
   "priceTimeSlot": 10000,

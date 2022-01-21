@@ -21,3 +21,21 @@ Content-Type: application/json
   "image": "hh",  
   "accountId": "AC-68960301"
 }
+
+### Update
+PUT http://localhost:8080/patient/DT-97507614
+Content-Type: application/json
+
+{
+  "fullName":"Ngoc Huy",
+  "phone": "0999999999",  
+  "email": "huy@gmail.com",  
+  "address":"Quảng Nam",  
+  "date":"2022-01-14",  
+  "gender":1,  
+  "status":1,  
+  "patientHistory": "Nhức răng, ê miệng",  
+  "image": "image ",  
+  "accountId": "AC-37227874"
+}
+

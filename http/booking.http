@@ -7,12 +7,26 @@ GET http://localhost:5000/booking/date-booking/1111111111
 
 
 ### create
-POST http://localhost:5000/booking
+POST http://localhost:8081/booking
 Content-Type: application/json
 
 {
-    "dateBooking":"5555555555",
-    "reasonExamination":"abc",
-    "patientId":"PT-59042664",
-    "timeSlotId":"TL-62597440"
+    "email":"phuanlut0000@gmail.com",
+    "patientName":"Pé yêu😘",
+    "doctorName":"Nguyễn Đăng Định",
+    "value":"07:30 - 08:00",
+    "doctorId":"DT-28147879",
+
+    "dateBooking":"4444444444",
+    "reasonExamination":"reasonExamination",
+    "patientId":"PT-64395546",
+    "timeSlotId":"TL-108846396" 
+}
+
+### verify-booking
+POST  http://localhost:8080/booking/verify-booking
+Content-Type: application/json
+
+{
+    "bookingId":"BK-46105963"
 }

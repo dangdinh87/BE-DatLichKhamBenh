@@ -61,8 +61,8 @@ const create = catchAsync(async (req, res) => {
 
 const update = catchAsync(async (req, res) => {
   const scheduleId = req.params.id;
-  const formData = req.body;
-  const updateSchedule = await scheduleService.update(scheduleId, formData);
+  const formUpdate = req.body;
+  const updateSchedule = await scheduleService.update(scheduleId, formUpdate);
 });
 
 module.exports = { getAll, getById, getOne, create, update };

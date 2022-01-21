@@ -14,7 +14,12 @@ module.exports = {
         type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.ENUM('BOOKED', 'COMPLETED', 'CANCELED'),
+        type: Sequelize.ENUM(
+          'UNCONFIRMED',
+          'CONFIRMED',
+          'COMPLETED',
+          'CANCELED'
+        ),
       },
       patientId: {
         type: Sequelize.STRING,

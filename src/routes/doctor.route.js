@@ -5,7 +5,8 @@ import { verifyAccessToken } from '../services/token.service';
 
 const router = express.Router();
 
-router.get('/', doctorController.getAll);
-router.get('/:id', doctorController.getById);
-router.post('/', doctorController.create);
+router.route('/').get(doctorController.getAll).post(doctorController.create);
+
+router.route('/:id').get(doctorController.getById).put(doctorController.update);
+
 module.exports = router;
