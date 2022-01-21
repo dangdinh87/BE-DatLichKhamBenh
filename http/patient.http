@@ -21,3 +21,21 @@ Content-Type: application/json
   "image": "hh",  
   "accountId": "AC-37227874"
 }
+
+### Update
+PUT http://localhost:8080/patient/PT-64395546
+Content-Type: application/json
+
+{
+  "fullName":"Thanh Tuấn",
+  "phone": "0999999999",  
+  "email": "huy@gmail.com",  
+  "address":"Quảng Nam",  
+  "date":"2022-01-14",  
+  "gender":1,  
+  "status":1,  
+  "patientHistory": "Nhức răng, ê miệng",  
+  "image": "image ",  
+  "accountId": "AC-37227874"
+}
+

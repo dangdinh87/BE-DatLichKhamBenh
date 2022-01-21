@@ -29,10 +29,21 @@ const getById = catchAsync(async (req, res) => {
 const create = catchAsync(async (req, res) => {
   const createPatient = await patientService.create(req.body);
   if (!createPatient) {
-    throw new ApiError(404, 'Thêm bệnh nhân thất bại');
+    return res.status(400).json({ message: 'Thêm bệnh nhân thất bại' });
   }
   res.status(200).json({
     message: 'Thêm bệnh nhân thành công',
+  });
+});
+
+const update = catchAsync(async (req, res) => {
+  const updatePatient = await patientService.update(req.params.id, req.body);
+  if (!updatePatient) {
+    return res.status(400).json({ message: 'Cập nhật bệnh nhân thất bại' });
+  }
+  res.status(200).json({
+    message: 'Cập nhật bệnh nhân thành công',
+    data: updatePatient,
   });
 });
 
@@ -46,4 +57,5 @@ module.exports = {
   getById,
   create,
   deletePatient,
+  update,
 };

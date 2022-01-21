@@ -1,4 +1,4 @@
-import db from "../models";
+import db from '../models';
 
 const getAll = async () => {
   return db.Schedule.findAll({
@@ -25,11 +25,11 @@ const create = async (formData) => {
 };
 
 const update = async (scheduleId, formData) => {
-  const scheduleDB = await db.Schedule.findOne({
-    where: { id: scheduleId },
-    include: db.TimeSlot,
-  });
+  // const scheduleDB = await db.Schedule.findOne({
+  //   where: { id: scheduleId },
+  //   include: db.TimeSlot,
+  // });
+  console.log(update);
 };
 
 module.exports = { getAll, getById, getOne, create, update };
-

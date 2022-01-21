@@ -17,6 +17,13 @@ const create = async (formData) => {
   return db.Patient.create(formData);
 };
 
+const update = async (patientId, formData) => {
+  const patient = await db.Patient.findOne({ where: { id: patientId } });
+  if (!patient) return;
+  Object.assign(patient, formData);
+  return await patient.save();
+};
+
 const deletePatient = async (id) => {
   db.Patient.destroy({
     where: { id: id },
@@ -28,4 +35,5 @@ module.exports = {
   getById,
   create,
   deletePatient,
+  update,
 };

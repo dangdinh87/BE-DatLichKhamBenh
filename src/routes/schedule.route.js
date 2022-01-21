@@ -7,10 +7,16 @@ import { auth } from '../middleware/auth.middleware';
 
 const router = express.Router();
 
-router.get('/', scheduleController.getAll);
-router.post('/', scheduleController.create);
-router.get('/:id', scheduleController.getById);
-router.post('/:id', scheduleController.update);
+router
+  .route('/')
+  .get(scheduleController.getAll)
+  .post(scheduleController.create);
+
+router
+  .route('/:id')
+  .get(scheduleController.getById)
+  .put(scheduleController.update);
+
 router.get('/wd-dt/check', auth, scheduleController.getOne);
 
 module.exports = router;

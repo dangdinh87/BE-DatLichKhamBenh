@@ -12,4 +12,5 @@ router
   .route('/date-booking/:dateBooking')
   .get(bookingController.getByDateBooking);
 
+router.route('/verify-booking').post(bookingController.verifyBooking);
 module.exports = router;

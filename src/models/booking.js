@@ -17,7 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       dateBooking: DataTypes.STRING,
       reasonExamination: DataTypes.STRING,
-      status: DataTypes.ENUM('BOOKED', 'COMPLETED', 'CANCELED'),
+      status: DataTypes.ENUM(
+        'UNCONFIRMED',
+        'CONFIRMED',
+        'COMPLETED',
+        'CANCELED'
+      ),
       patientId: DataTypes.STRING,
       timeSlotId: DataTypes.STRING,
     },

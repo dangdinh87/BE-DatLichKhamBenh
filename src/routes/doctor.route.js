@@ -3,8 +3,8 @@ import { doctorController } from '../controllers';
 
 const router = express.Router();
 
-router.get('/', doctorController.getAll);
-router.post('/', doctorController.create);
-router.get('/:id', doctorController.getById);
+router.route('/').get(doctorController.getAll).post(doctorController.create);
+
+router.route('/:id').get(doctorController.getById).put(doctorController.update);
 
 module.exports = router;
