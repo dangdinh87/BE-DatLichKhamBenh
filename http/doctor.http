@@ -31,13 +31,13 @@ Content-Type: application/json
 
 
 ### Update
-PUT http://localhost:8080/doctor/DT-28147879
+PUT http://localhost:8080/doctor/DT-46979565
 Content-Type: application/json
 
 {
-  "fullName":"Đăng Định",
-  "phone": "0999999999",  
-  "email": "dinh@gmail.com",  
+  "fullName":"huynh Vy",
+  "phone": "0111111111",  
+  "email": "khvyang@gmail.com",  
   "address":"Quảng Nam",  
   "date":"2000-01-14",  
   "gender":1,  
@@ -45,9 +45,9 @@ Content-Type: application/json
   "workHistory": "Bệnh viện Gia Đình",  
   "avatarImage": "avatar",  
   "clinicName": "Phòng Khám anh Định",  
-  "certificateName": "Thạc sĩ",  
+  "certificateName": "Tien sĩ",  
   "licenseName": "Giấy phép",  
-  "specialistId": "Răng hàm mặt",  
+  "specialistId": "Da lieu",  
   "positionId": "PT-01",  
   "accountId": "AC-70760975"
 }

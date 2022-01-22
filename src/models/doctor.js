@@ -1,5 +1,5 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Doctor extends Model {
     /**
@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Doctor.hasMany(models.Schedule, { foreignKey: "doctorId" });
-      Doctor.hasMany(models.Rate, { foreignKey: "doctorId" });
-      Doctor.belongsTo(models.Position, { foreignKey: "positionId" });
-      Doctor.belongsTo(models.Specialist, { foreignKey: "specialistId" });
-      Doctor.belongsTo(models.Account, { foreignKey: "accountId" });
+      Doctor.hasMany(models.Schedule, { foreignKey: 'doctorId' });
+      Doctor.hasMany(models.Rate, { foreignKey: 'doctorId' });
+      Doctor.belongsTo(models.Position, { foreignKey: 'positionId' });
+      Doctor.belongsTo(models.Specialist, { foreignKey: 'specialistId' });
+      Doctor.belongsTo(models.Account, { foreignKey: 'accountId' });
     }
   }
   Doctor.init(
@@ -27,16 +27,17 @@ module.exports = (sequelize, DataTypes) => {
       workHistory: DataTypes.TEXT,
       avatarImage: DataTypes.STRING,
       clinicName: DataTypes.STRING,
+      clinicImage: DataTypes.STRING,
       certificateName: DataTypes.STRING,
-      licenseName: DataTypes.STRING,
-      status: DataTypes.BOOLEAN,
+      licenseImage: DataTypes.STRING,
+      status: DataTypes.ENUM('NOTACTIVE', 'PENDING', 'ACTIVE', 'CANCEL'),
       specialistId: DataTypes.STRING,
       positionId: DataTypes.STRING,
       accountId: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Doctor",
+      modelName: 'Doctor',
     }
   );
   return Doctor;

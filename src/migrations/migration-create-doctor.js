@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Doctors", {
+    await queryInterface.createTable('Doctors', {
       id: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -34,14 +34,20 @@ module.exports = {
       clinicName: {
         type: Sequelize.STRING,
       },
+      clinicImage: {
+        type: Sequelize.STRING,
+      },
+      clinicAddress: {
+        type: Sequelize.STRING,
+      },
       certificateName: {
         type: Sequelize.STRING,
       },
-      licenseName: {
+      licenseImage: {
         type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.ENUM('NOTACTIVE', 'PENDING', 'ACTIVE', 'CANCEL'),
       },
       specialistId: {
         type: Sequelize.STRING,
@@ -63,6 +69,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Doctors");
+    await queryInterface.dropTable('Doctors');
   },
 };

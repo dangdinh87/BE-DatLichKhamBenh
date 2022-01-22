@@ -3,7 +3,7 @@ POST http://localhost:5000/auth/login HTTP/1.1
 content-Type: application/json
 
 {
-  "username":"thuankhang", 
+  "username":"lenga", 
   "password":"123456"
 }
 
@@ -12,7 +12,7 @@ POST http://localhost:5000/auth/register HTTP/1.1
 content-Type: application/json
 
 {
-  "username":"thuankhang",
+  "username":"lenga",
   "password":"123456",
   "typeAccountId":"1"
 }

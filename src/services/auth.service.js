@@ -13,6 +13,7 @@ const register = async (formData) => {
   }
 
   let checkDbByTypeAccountId;
+  let idUser;
 
   const hashPasswordAccount = await bcrypt.hash(formData.password, saltRounds);
   formData.id = generatorID('AC');
@@ -20,6 +21,7 @@ const register = async (formData) => {
   if (formData.typeAccountId == '1') {
     formData.status = 1;
     checkDbByTypeAccountId = db.Patient;
+    idUser = '';
   }
 
   if (formData.typeAccountId == '2') {
@@ -28,11 +30,16 @@ const register = async (formData) => {
   }
 
   await checkDbByTypeAccountId.create({
-    id: generatorID('DT'),
+    id: formData.typeAccountId == '1' ? generatorID('PT') : generatorID('DT'),
     accountId: formData.id,
   });
 
-  return db.Account.create(formData);
+  await db.Account.create(formData);
+
+  return db.Account.findOne({
+    where: { id: formData.id },
+    include: checkDbByTypeAccountId,
+  });
 };
 
 const login = async (username, password) => {
