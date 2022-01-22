@@ -31,6 +31,43 @@ content-Type: application/json
       "orderIndex": 1,
       "value": "07:30 - 08:00",
       "status": 1
+    },
+    {
+      "orderIndex": 2,
+      "value": "08:00 - 08:30",
+      "status": 1
+    },
+    {
+      "orderIndex": 3,
+      "value": "08:30 - 09:00",
+      "status": 1
+    }
+  ],
+  "doctorId":"DT-46979565",
+  "status": 1
+}
+
+### Update Schedule
+PUT http://localhost:8080/schedule/
+content-Type: application/json
+
+{
+  "workingDay": "555555555",
+  "startTime": 7,
+  "endTime": 8,
+  "priceTimeSlot": 10000,
+  "maxNumberTimeSlot": 5,
+  "rangeTime": 0.5,
+  "arrSchedule": [
+    {
+      "orderIndex": 0,
+      "value": "07:00 - 07:30",
+      "status": 1
+    },
+    {
+      "orderIndex": 1,
+      "value": "07:30 - 08:00",
+      "status": 1
     }
   ],
   "doctorId":"DT-28147879",

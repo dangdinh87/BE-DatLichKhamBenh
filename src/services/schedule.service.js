@@ -25,11 +25,13 @@ const create = async (formData) => {
 };
 
 const update = async (scheduleId, formData) => {
+  console.log(scheduleId);
+  console.log(formData);
   // const scheduleDB = await db.Schedule.findOne({
   //   where: { id: scheduleId },
   //   include: db.TimeSlot,
   // });
-  console.log(update);
+  // console.log(update);
 };
 
 module.exports = { getAll, getById, getOne, create, update };
