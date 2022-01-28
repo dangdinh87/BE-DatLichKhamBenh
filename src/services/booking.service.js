@@ -93,6 +93,7 @@ const verifyBooking = async (formData) => {
   await updateStatus.save();
   return '2';
 };
+
 module.exports = {
   getByPatientId,
   getByDateBooking,

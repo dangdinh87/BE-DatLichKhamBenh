@@ -13,15 +13,14 @@ const register = async (formData) => {
   }
 
   let checkDbByTypeAccountId;
-  let idUser;
 
   const hashPasswordAccount = await bcrypt.hash(formData.password, saltRounds);
   formData.id = generatorID('AC');
   formData.password = hashPasswordAccount;
+
   if (formData.typeAccountId == '1') {
     formData.status = 1;
     checkDbByTypeAccountId = db.Patient;
-    idUser = '';
   }
 
   if (formData.typeAccountId == '2') {

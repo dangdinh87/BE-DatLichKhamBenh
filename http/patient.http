@@ -23,11 +23,11 @@ Content-Type: application/json
 }
 
 ### Update
-PUT http://localhost:8080/patient/DT-97507614
+PUT http://localhost:8080/patient/PT-45944630
 Content-Type: application/json
 
 {
-  "fullName":"Ngoc Huy",
+  "fullName":"Nga",
   "phone": "0999999999",  
   "email": "huy@gmail.com",  
   "address":"Quảng Nam",  

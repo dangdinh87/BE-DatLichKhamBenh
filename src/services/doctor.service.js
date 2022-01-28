@@ -2,22 +2,48 @@ import db from '../models';
 import { generatorID } from '../utils/helpers';
 const { Op } = require('sequelize');
 
-const getAll = async (limit, skip, search) => {
-  return db.Doctor.findAll({
-    limit: limit,
-    offset: skip, // số lượng phần tử bỏ qua
-    order: [['createdAt', 'DESC']],
-    where: {
-      [Op.or]: [
-        { fullName: { [Op.like]: '%' + search + '%' } },
-        { clinicName: { [Op.like]: '%' + search + '%' } },
-      ],
-    },
-  });
+const getAll = async (limit, skip, search, accountId) => {
+  console.log('accountId: ', accountId);
+  const account = await db.Account.findOne({ where: { id: accountId } });
+  console.log('account: ', account);
+  // console.log('search:', typeof search);
+  if (account.typeAccountId < 3) {
+    return await db.Doctor.findAll({
+      limit: limit,
+      offset: skip, // số lượng phần tử bỏ qua
+      order: [['createdAt', 'DESC']],
+      where: {
+        [Op.or]: [
+          { fullName: { [Op.like]: '%' + search + '%' }, status: 'ACTIVE' },
+          { clinicName: { [Op.like]: '%' + search + '%' }, status: 'ACTIVE' },
+        ],
+      },
+    });
+  } else {
+    if (search === '') {
+      return await db.Doctor.findAll({
+        limit: limit,
+        offset: skip, // số lượng phần tử bỏ qua
+        order: [['createdAt', 'DESC']],
+      });
+    } else {
+      return db.Doctor.findAll({
+        limit: limit,
+        offset: skip, // số lượng phần tử bỏ qua
+        order: [['createdAt', 'DESC']],
+        where: {
+          [Op.or]: [
+            { fullName: { [Op.like]: '%' + search + '%' } },
+            { clinicName: { [Op.like]: '%' + search + '%' } },
+          ],
+        },
+      });
+    }
+  }
 };
 
 const getById = async (id) => {
-  return db.Doctor.findOne({
+  return await db.Doctor.findOne({
     where: { id: id },
     include: [db.Position, db.Specialist],
   });
@@ -26,7 +52,7 @@ const getById = async (id) => {
 const create = async (formData) => {
   formData.id = generatorID('DT');
   console.log(formData);
-  return db.Doctor.create(formData);
+  return await db.Doctor.create(formData);
 };
 
 const update = async (formData, doctorId) => {

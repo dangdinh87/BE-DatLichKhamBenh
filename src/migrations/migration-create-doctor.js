@@ -47,7 +47,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.ENUM('NOTACTIVE', 'PENDING', 'ACTIVE', 'CANCEL'),
+        type: Sequelize.ENUM('NOT_ACTIVE', 'PENDING', 'ACTIVE', 'CANCEL'),
+      },
+      numberOfPatientsExamined: {
+        type: Sequelize.INTEGER,
       },
       specialistId: {
         type: Sequelize.STRING,

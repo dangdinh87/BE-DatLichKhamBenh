@@ -76,9 +76,13 @@ const verifyBooking = catchAsync(async (req, res) => {
       .json({ message: 'Xác nhận đặt lịch thành công 😊 ', status: 0 });
   }
 });
+
+const updateStatus = catchAsync(async (req, res) => {});
+
 module.exports = {
   getByPatientId,
   getByDateBooking,
   create,
   verifyBooking,
+  updateStatus,
 };
