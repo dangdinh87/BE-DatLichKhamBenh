@@ -46,7 +46,7 @@ const login = async (username, password) => {
     where: {
       username: username,
     },
-    raw: true,
+    raw: true
   });
   if (!checkUsername) return;
 
@@ -62,7 +62,7 @@ const login = async (username, password) => {
 
   return await db.Account.findOne({
     where: {
-      username: username,
+      username: username
     },
     attributes: {
       exclude: ['password'],
@@ -71,25 +71,9 @@ const login = async (username, password) => {
   });
 };
 
-const logout = async (req, res) => {
-  //
-};
+const logout = async (req, res) => {};
 
 module.exports = {
   register,
-  login,
+  login
 };
-
-// import bcrypt from "bcryptjs";
-// const salt = bcrypt.genSaltSync(10);
-
-// const hashPassword = async (password) => {
-//   return bcrypt.hashSync(password, salt);
-// };
-
-// const register = async (formData) => {
-//   const hashPasswordAccount = hashPassword(formData.password);
-//   formData.password = hashPasswordAccount;
-//   console.log(formData);
-//   return db.User.create(data);
-// };

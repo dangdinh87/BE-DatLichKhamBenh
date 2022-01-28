@@ -1,11 +1,10 @@
 import express from 'express';
 import { scheduleController } from '../controllers';
-
-// import { verifyAccessToken } from '../services/token.service';
-
+import { verifyAccessToken } from '../services/token.service';
 import { auth } from '../middleware/auth.middleware';
-
 const router = express.Router();
+
+router.get('/get-schedule-by-date', scheduleController.getOne);
 
 router
   .route('/')
@@ -17,6 +16,6 @@ router
   .get(scheduleController.getById)
   .put(scheduleController.update);
 
-router.get('/wd-dt/check', auth, scheduleController.getOne);
+// auth,
 
 module.exports = router;

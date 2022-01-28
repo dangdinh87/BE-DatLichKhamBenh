@@ -16,7 +16,7 @@ const getAll = catchAsync(async (req, res) => {
   }
   return res.status(200).json({
     message: 'Danh sách bác sĩ',
-    data: doctors,
+    data: doctors
   });
 });
 
@@ -24,12 +24,12 @@ const getById = catchAsync(async (req, res) => {
   const doctor = await doctorService.getById(req.params.id);
   if (!doctor) {
     return res.status(400).json({
-      message: 'Không tìm thấy bác sĩ',
+      message: 'Không tìm thấy bác sĩ'
     });
   }
   return res.status(200).json({
     message: 'Tìm thấy bác sĩ',
-    data: doctor,
+    data: doctor
   });
 });
 
@@ -37,11 +37,11 @@ const create = catchAsync(async (req, res) => {
   const createDoctor = await doctorService.create(req.body);
   if (!createDoctor) {
     return res.status(400).json({
-      message: 'Thêm bác sĩ thất bại',
+      message: 'Thêm bác sĩ thất bại'
     });
   }
   return res.status(200).json({
-    message: 'Thêm bác sĩ thành công',
+    message: 'Thêm bác sĩ thành công'
   });
 });
 
@@ -49,12 +49,12 @@ const update = catchAsync(async (req, res) => {
   const updateDoctor = await doctorService.update(req.body, req.params.id);
   if (!updateDoctor) {
     return res.status(400).json({
-      message: 'Cập nhật thất bại',
+      message: 'Cập nhật thất bại'
     });
   }
   return res.status(200).json({
     message: 'Cập nhật thành công',
-    data: updateDoctor,
+    data: updateDoctor
   });
 });
 
@@ -62,5 +62,6 @@ module.exports = {
   getAll,
   getById,
   create,
-  update,
+  getById,
+  update
 };

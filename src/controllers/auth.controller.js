@@ -21,19 +21,24 @@ const register = catchAsync(async (req, res) => {
 const login = catchAsync(async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    throw new ApiError(401, 'Vui lòng nhập username và password');
+    res.status(400).json({
+      message: 'Vui lòng nhập tài khoản và mật khẩu'
+    });
   }
 
   const info = await authService.login(username, password);
+  console.log(info);
   if (!info) {
-    throw new ApiError(401, 'Tài khoản hoặc mật khẩu không đúng');
+    res.status(400).json({
+      message: 'Tài khoản hoặc mật khẩu không đúng'
+    });
   }
 
   const accessToken = await jwtService.signAccessToken(info.id);
   res.status(200).json({
-    message: 'Login thành công',
+    message: 'Đăng nhập thành công',
     token: accessToken,
-    data: info,
+    data: info
   });
 });
 
@@ -41,12 +46,12 @@ const logout = catchAsync(async (req, res) => {
   console.log(req.payload.accountId);
   if (!req.payload.accountId)
     return res.json({
-      message: 'Logout success',
+      message: 'Đăng Xuất'
     });
 });
 
 module.exports = {
   register,
   login,
-  logout,
+  logout
 };

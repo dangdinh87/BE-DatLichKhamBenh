@@ -25,15 +25,19 @@ const getById = catchAsync(async (req, res) => {
 });
 
 const getOne = catchAsync(async (req, res) => {
-  const schedule = await scheduleService.getOne(req.body);
+  const schedule = await scheduleService.getOne(req.query);
   if (!schedule) {
-    return res.status(400).json({ message: 'Không tìm thấy lịch khám' });
+    res.status(400).json({
+      message: 'Khong co lich',
+      data: []
+    });
   }
-  return res.status(200).json({ message: 'Tìm thấy lịch khám' });
+  return res
+    .status(200)
+    .json({ message: 'Tìm thấy lịch khám', data: schedule });
 });
 
 const create = catchAsync(async (req, res) => {
-  console.log(req.body);
   const formData = req.body;
   formData.id = generatorID('SD');
 
@@ -51,7 +55,7 @@ const create = catchAsync(async (req, res) => {
   }
 
   return res.status(200).json({
-    message: 'Thêm lịch khám thành công',
+    message: 'Thêm lịch khám thành công'
   });
 });
 

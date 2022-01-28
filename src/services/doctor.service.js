@@ -45,14 +45,18 @@ const getAll = async (limit, skip, search, accountId) => {
 const getById = async (id) => {
   return await db.Doctor.findOne({
     where: { id: id },
-    include: [db.Position, db.Specialist],
+    include: [db.Position, db.Specialist]
   });
 };
 
 const create = async (formData) => {
   formData.id = generatorID('DT');
+<<<<<<< HEAD
   console.log(formData);
   return await db.Doctor.create(formData);
+=======
+  return db.Doctor.create(formData);
+>>>>>>> b3ca96d27af29b085466559ea9cad2174da5620b
 };
 
 const update = async (formData, doctorId) => {
@@ -66,5 +70,5 @@ module.exports = {
   getAll,
   getById,
   create,
-  update,
+  update
 };
