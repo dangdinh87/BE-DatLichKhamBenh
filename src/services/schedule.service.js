@@ -14,8 +14,8 @@ const getById = async (id) => {
 };
 
 const getOne = async ({ workingDay, doctorId }) => {
-  console.log(workingDay);
-  console.log(doctorId)
+  console.log(workingDay, '123');
+  console.log(doctorId, '456');
   return await db.Schedule.findOne({
     where: { workingDay, doctorId },
     include: [{ model: db.TimeSlot }]
@@ -31,8 +31,6 @@ const update = async (scheduleId, formData) => {
     where: { id: scheduleId },
     include: db.TimeSlot
   });
-  console.log(scheduleId);
-  console.log(formData);
   // const scheduleDB = await db.Schedule.findOne({
   //   where: { id: scheduleId },
   //   include: db.TimeSlot,

@@ -5,70 +5,70 @@ module.exports = {
       id: {
         type: Sequelize.STRING,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
       fullName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       phone: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       gender: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.BOOLEAN
       },
       address: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       workHistory: {
-        type: Sequelize.TEXT,
+        type: Sequelize.TEXT
       },
       avatarImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       clinicName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       clinicImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       clinicAddress: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
-      certificateName: {
-        type: Sequelize.STRING,
+      certificateImage: {
+        type: Sequelize.STRING
       },
       licenseImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.ENUM('NOTACTIVE', 'PENDING', 'ACTIVE', 'CANCEL'),
+        type: Sequelize.ENUM('NOT_ACTIVE', 'PENDING', 'ACTIVE', 'CANCEL')
       },
       specialistId: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       positionId: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       accountId: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-      },
+        type: Sequelize.DATE
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Doctors');
-  },
+  }
 };

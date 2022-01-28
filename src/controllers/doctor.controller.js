@@ -14,7 +14,7 @@ const getAll = catchAsync(async (req, res) => {
   }
   return res.status(200).json({
     message: 'Danh sách bác sĩ',
-    data: doctors,
+    data: doctors
   });
 });
 
@@ -35,11 +35,11 @@ const create = catchAsync(async (req, res) => {
   const createDoctor = await doctorService.create(req.body);
   if (!createDoctor) {
     return res.status(400).json({
-      message: 'Thêm bác sĩ thất bại',
+      message: 'Thêm bác sĩ thất bại'
     });
   }
   return res.status(200).json({
-    message: 'Thêm bác sĩ thành công',
+    message: 'Thêm bác sĩ thành công'
   });
 });
 
@@ -52,7 +52,7 @@ const update = catchAsync(async (req, res) => {
   }
   return res.status(200).json({
     message: 'Cập nhật thành công',
-    data: updateDoctor,
+    data: updateDoctor
   });
 });
 

@@ -10,16 +10,16 @@ const getAll = async (limit, skip, search) => {
     where: {
       [Op.or]: [
         { fullName: { [Op.like]: '%' + search + '%' } },
-        { clinicName: { [Op.like]: '%' + search + '%' } },
-      ],
-    },
+        { clinicName: { [Op.like]: '%' + search + '%' } }
+      ]
+    }
   });
 };
 
 const getById = async (id) => {
   return db.Doctor.findOne({
     where: { id: id },
-    include: [db.Position, db.Specialist],
+    include: [db.Position, db.Specialist]
   });
 };
 
@@ -39,5 +39,5 @@ module.exports = {
   getAll,
   getById,
   create,
-  update,
+  update
 };

@@ -4,6 +4,8 @@ import { verifyAccessToken } from '../services/token.service';
 import { auth } from '../middleware/auth.middleware';
 const router = express.Router();
 
+router.get('/get-schedule-by-date', scheduleController.getOne);
+
 router
   .route('/')
   .get(scheduleController.getAll)
@@ -14,6 +16,6 @@ router
   .get(scheduleController.getById)
   .put(scheduleController.update);
 
-router.get('/wd-dt/check', auth, scheduleController.getOne);
+// auth,
 
 module.exports = router;

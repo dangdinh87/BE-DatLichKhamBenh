@@ -29,8 +29,10 @@ let upload = multer({
   fileFilter
 });
 upload = upload.fields([
-  { name: 'productImageFile', maxCount: 1 },
-  { name: 'slideImage', maxCount: 4 }
+  { name: 'avatarImage', maxCount: 1 },
+  { name: 'clinicImage', maxCount: 1 },
+  { name: 'certificateImage', maxCount: 1 },
+  { name: 'licenseImage', maxCount: 1 }
 ]);
 
 module.exports = {
