@@ -1,7 +1,7 @@
 
 ### getAll
-GET http://localhost:5000/doctor 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy04Mjc3NDc0OSIsImlhdCI6MTY0MjIxODE5MiwiZXhwIjoxNjQyMjIxNzkyfQ.hnI134ve7nFipqY2YotYL4xzbLV02Q--g0h8i78Zu3I
+GET http://localhost:8080/doctor
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy0zNDI3MzMzNyIsImlhdCI6MTY0MzI5MTIyMSwiZXhwIjoxNjQzMjk0ODIxfQ.bZtXVLO8zyno-QrbJsqbJiWvB28jpTBYVWzIIBeKbqg
 
 ### getById
 GET http://localhost:5000/doctor/DT-63186989
@@ -12,9 +12,15 @@ POST http://localhost:5000/doctor
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
+  "fullName":"Minh Phuong",
+  "phone": "0999999999",  
+  "email": "phuong@gmail.com",  
+=======
   "fullName":"Lê Nga",
   "phone": "0977963775",  
   "email": "huy@gmail.com",  
+>>>>>>> b3ca96d27af29b085466559ea9cad2174da5620b
   "address":"Quảng Nam",  
   "date":"2022-01-14",  
   "gender":1,  
@@ -31,13 +37,13 @@ Content-Type: application/json
 
 
 ### Update
-PUT http://localhost:8080/doctor/DT-46979565
+PUT http://localhost:8080/doctor/DT-18739108
 Content-Type: application/json
 
 {
-  "fullName":"huynh Vy",
+  "fullName":"Phu An",
   "phone": "0111111111",  
-  "email": "khvyang@gmail.com",  
+  "email": "thuankhang@gmail.com",  
   "address":"Quảng Nam",  
   "date":"2000-01-14",  
   "gender":1,  
@@ -45,8 +51,10 @@ Content-Type: application/json
   "workHistory": "Bệnh viện Gia Đình",  
   "avatarImage": "avatar",  
   "clinicName": "Phòng Khám anh Định",  
-  "certificateName": "Tien sĩ",  
-  "licenseName": "Giấy phép",  
+  "clinicImage":"image phòng khám",
+  "clinicAddress":"Địa chỉ phòng khám",
+  "certificateName": "Chứng chỉ",  
+  "licenseImage": "Giấy phép",  
   "specialistId": "Da lieu",  
   "positionId": "PT-01",  
   "accountId": "AC-70760975"
