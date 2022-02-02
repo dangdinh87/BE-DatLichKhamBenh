@@ -46,7 +46,17 @@ const create = catchAsync(async (req, res) => {
 });
 
 const update = catchAsync(async (req, res) => {
-  const updateDoctor = await doctorService.update(req.body, req.params.id);
+  const files = req.files;
+  let objFiles = {};
+  for (const key in files) {
+    if (key && files[key] && files[key][0]) {
+      objFiles[key] = files[key][0].filename;
+    }
+  }
+
+  const result = { ...objFiles, ...req.body };
+
+  const updateDoctor = await doctorService.update(result, req.params.id);
   if (!updateDoctor) {
     return res.status(400).json({
       message: 'Cập nhật thất bại'

@@ -14,8 +14,6 @@ const getById = async (id) => {
 };
 
 const getOne = async ({ workingDay, doctorId }) => {
-  console.log(workingDay, '123');
-  console.log(doctorId, '456');
   return await db.Schedule.findOne({
     where: { workingDay, doctorId },
     include: [{ model: db.TimeSlot }]

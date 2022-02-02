@@ -5,34 +5,44 @@ const timeSlotRoute = require('./timeSlot.route');
 const patientRoute = require('./patient.route');
 const doctorRoute = require('./doctor.route');
 const bookingRoute = require('./booking.route');
+const positionRoute = require('./position.route');
+const specialistRoute = require('./specialist.route');
 
 const router = express.Router();
 
 const defaultRoutes = [
   {
     path: '/auth',
-    route: authRoute,
+    route: authRoute
   },
   {
     path: '/schedule',
-    route: scheduleRoute,
+    route: scheduleRoute
   },
   {
     path: '/time-slot',
-    route: timeSlotRoute,
+    route: timeSlotRoute
   },
   {
     path: '/patient',
-    route: patientRoute,
+    route: patientRoute
   },
   {
     path: '/doctor',
-    route: doctorRoute,
+    route: doctorRoute
   },
   {
     path: '/booking',
-    route: bookingRoute,
+    route: bookingRoute
   },
+  {
+    path: '/position',
+    route: positionRoute
+  },
+  {
+    path: '/specialist',
+    route: specialistRoute
+  }
 ];
 
 defaultRoutes.forEach((route) => {
