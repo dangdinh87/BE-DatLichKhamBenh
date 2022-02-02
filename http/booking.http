@@ -5,6 +5,9 @@ GET http://localhost:5000/booking/patient/PT-71377913?limit=5&page=2
 ### getByDateBooking
 GET http://localhost:5000/booking/date-booking/1111111111 
 
+### getByDoctorId
+GET http://localhost:8080/booking/doctor/DT-18739108
+
 
 ### create
 POST http://localhost:8081/booking

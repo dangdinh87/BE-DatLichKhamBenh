@@ -12,5 +12,7 @@ router
   .route('/date-booking/:dateBooking')
   .get(bookingController.getByDateBooking);
 
+router.route('/doctor/:id').get(bookingController.getByDoctorId);
+
 router.route('/verify-booking').post(bookingController.verifyBooking);
 module.exports = router;
