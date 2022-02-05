@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       workHistory: {
         type: Sequelize.TEXT
@@ -47,14 +47,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-<<<<<<< HEAD
         type: Sequelize.ENUM('NOT_ACTIVE', 'PENDING', 'ACTIVE', 'CANCEL'),
       },
       numberOfPatientsExamined: {
         type: Sequelize.INTEGER,
-=======
-        type: Sequelize.ENUM('NOT_ACTIVE', 'PENDING', 'ACTIVE', 'CANCEL')
->>>>>>> b3ca96d27af29b085466559ea9cad2174da5620b
       },
       specialistId: {
         type: Sequelize.STRING

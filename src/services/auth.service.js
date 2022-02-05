@@ -5,7 +5,7 @@ import db from '../models';
 
 const register = async (formData) => {
   const checkUsername = await db.Account.findOne({
-    where: { username: formData.username },
+    where: { username: formData.username }
   });
 
   if (checkUsername) {
@@ -24,27 +24,28 @@ const register = async (formData) => {
   }
 
   if (formData.typeAccountId == '2') {
-    formData.status = 0;
+    formData.status = 1;
     checkDbByTypeAccountId = db.Doctor;
   }
 
   await checkDbByTypeAccountId.create({
     id: formData.typeAccountId == '1' ? generatorID('PT') : generatorID('DT'),
     accountId: formData.id,
+    status: formData.typeAccountId == '1' ? 1 : 'NOT_ACTIVE'
   });
 
   await db.Account.create(formData);
 
   return db.Account.findOne({
     where: { id: formData.id },
-    include: checkDbByTypeAccountId,
+    include: checkDbByTypeAccountId
   });
 };
 
 const login = async (username, password) => {
   const checkUsername = await db.Account.findOne({
     where: {
-      username: username,
+      username: username
     },
     raw: true
   });
@@ -65,9 +66,9 @@ const login = async (username, password) => {
       username: username
     },
     attributes: {
-      exclude: ['password'],
+      exclude: ['password']
     },
-    include: dbInclude,
+    include: dbInclude
   });
 };
 

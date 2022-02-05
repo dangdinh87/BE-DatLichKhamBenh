@@ -8,8 +8,8 @@ const getAll = catchAsync(async (req, res) => {
   const skip = limit * (page - 1);
   const search = req.query.search || '';
 
-  const accountId = req.payload.accountId;
-  const doctors = await doctorService.getAll(limit, skip, search, accountId);
+  // const accountId = req.payload.accountId;
+  const doctors = await doctorService.getAll(limit, skip, search);
 
   if (!doctors) {
     return res.status(400).json({ message: 'Không tìm thấy danh sách bác sĩ' });
