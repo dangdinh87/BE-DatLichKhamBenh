@@ -7,15 +7,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQ
 GET http://localhost:5000/doctor/BS-352525223
 
 
+### getTopDoctor
+GET http://localhost:8080/doctor/top/3
+
+
 
 ### Create
 POST http://localhost:5000/doctor
 Content-Type: application/json
 
 {
-  "fullName":"Lê Nga",
-  "phone": "0977963775",  
-  "email": "huy@gmail.com",  
+  "fullName":"Minh Phuong",
+  "phone": "0999999999",  
+  "email": "phuong@gmail.com",  
   "address":"Quảng Nam",  
   "date":"2022-01-14",  
   "gender":1,  

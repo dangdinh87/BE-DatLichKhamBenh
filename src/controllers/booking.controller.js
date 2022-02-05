@@ -38,6 +38,21 @@ const getByDateBooking = catchAsync(async (req, res) => {
   });
 });
 
+//Doctor
+const getByDoctorId = catchAsync(async (req, res) => {
+  const booking = await bookingService.getByDoctorId(req.params.id);
+  if (!booking || booking.length < 1) {
+    return res.status(400).json({
+      message: 'Không tìm thấy danh sách đặt khám',
+    });
+  }
+  return res.status(200).json({
+    message: 'Danh sách đặt khám',
+    result: booking.length,
+    data: booking,
+  });
+});
+
 // Patient
 const create = catchAsync(async (req, res) => {
   const formData = req.body;
@@ -82,6 +97,7 @@ const updateStatus = catchAsync(async (req, res) => {});
 module.exports = {
   getByPatientId,
   getByDateBooking,
+  getByDoctorId,
   create,
   verifyBooking,
   updateStatus,

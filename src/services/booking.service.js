@@ -18,6 +18,23 @@ const getByDateBooking = async (id) => {
   });
 };
 
+const getByDoctorId = async (doctorId) => {
+  return await db.Booking.findAll({
+    include: [
+      {
+        model: db.TimeSlot,
+        include: [
+          {
+            model: db.Schedule,
+            where: { doctorId: doctorId },
+          },
+        ],
+      },
+    ],
+    order: [['createdAt', 'DESC']],
+  });
+};
+
 const create = async (formData) => {
   // Kiểm tra MaxNumberTimeSlot == count(timeSlot)
   const countTimeSlots = await db.Booking.count({
@@ -97,6 +114,7 @@ const verifyBooking = async (formData) => {
 module.exports = {
   getByPatientId,
   getByDateBooking,
+  getByDoctorId,
   create,
   verifyBooking,
 };
