@@ -6,21 +6,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQ
 ### getById
 GET http://localhost:5000/doctor/DT-63186989
 
+### getTopDoctor
+GET http://localhost:8080/doctor/top/3
+
+
 
 ### Create
 POST http://localhost:5000/doctor
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
   "fullName":"Minh Phuong",
   "phone": "0999999999",  
   "email": "phuong@gmail.com",  
-=======
-  "fullName":"Lê Nga",
-  "phone": "0977963775",  
-  "email": "huy@gmail.com",  
->>>>>>> b3ca96d27af29b085466559ea9cad2174da5620b
   "address":"Quảng Nam",  
   "date":"2022-01-14",  
   "gender":1,  

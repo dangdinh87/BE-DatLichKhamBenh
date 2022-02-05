@@ -31,6 +31,7 @@ const getByDoctorId = async (doctorId) => {
         ],
       },
     ],
+    order: [['createdAt', 'DESC']],
   });
 };
 

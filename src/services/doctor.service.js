@@ -1,6 +1,5 @@
 import db from '../models';
 import { generatorID } from '../utils/helpers';
-const { Op } = require('sequelize');
 
 const getAll = async (limit, skip, search, accountId) => {
   console.log('accountId: ', accountId);
@@ -49,6 +48,14 @@ const getById = async (id) => {
   });
 };
 
+const getTop = async (n) => {
+  console.log(n);
+  return await db.Doctor.findAll({
+    limit: parseInt(n),
+    order: [['numberOfPatientsExamined', 'DESC']],
+  });
+};
+
 const create = async (formData) => {
   formData.id = generatorID('DT');
   return db.Doctor.create(formData);
@@ -64,6 +71,7 @@ const update = async (formData, doctorId) => {
 module.exports = {
   getAll,
   getById,
+  getTop,
   create,
   update,
 };
