@@ -62,14 +62,26 @@ const create = catchAsync(async (req, res) => {
     });
   }
   const createBooking = await bookingService.create(formData);
-  if (!createBooking) {
-    return res.status(400).json({
-      message: 'Đặt lịch khám thất bại, số lượng đã đầy',
-    });
+  let message = 'Đặt lịch khám thành công';
+  let statusCode = 200;
+  let data = createBooking;
+
+  if (createBooking == 1) {
+    statusCode = 400;
+    message =
+      'Bạn đã đặt lịch trong khung giờ này rồi. Vui lòng chọn khung giờ khác ! ';
+    data = null;
   }
-  return res.status(200).json({
-    message: 'Đặt lịch khám thành công',
-    data: createBooking,
+  if (createBooking == 2) {
+    statusCode = 400;
+    message =
+      'Số lượng đặt khám trong khung giờ này đã đầy. Vui lòng chọn khung giờ khác !';
+    data = null;
+  }
+
+  return res.status(statusCode).json({
+    message: message,
+    data: data,
   });
 });
 
@@ -94,6 +106,17 @@ const verifyBooking = catchAsync(async (req, res) => {
 
 const updateStatus = catchAsync(async (req, res) => {});
 
+const countBookingByDoctorId = catchAsync(async (req, res) => {
+  console.log(req.params.doctorId);
+  const bookings = await bookingService.countBookingByDoctorId(
+    req.params.doctorId
+  );
+  res.status(200).json({
+    message: 'success',
+    count: bookings.length,
+  });
+});
+
 module.exports = {
   getByPatientId,
   getByDateBooking,
@@ -101,4 +124,5 @@ module.exports = {
   create,
   verifyBooking,
   updateStatus,
+  countBookingByDoctorId,
 };

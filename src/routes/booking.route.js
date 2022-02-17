@@ -15,4 +15,9 @@ router
 router.route('/doctor/:id').get(bookingController.getByDoctorId);
 
 router.route('/verify-booking').post(bookingController.verifyBooking);
+
+router
+  .route('/count-booking/:doctorId')
+  .get(bookingController.countBookingByDoctorId);
+
 module.exports = router;

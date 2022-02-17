@@ -51,12 +51,19 @@ const create = async (formData) => {
   });
   await updateCurrentNumberTimeSlot.save();
 
+  const bookingByPatientId = await db.Booking.findOne({
+    where: { timeSlotId: formData.timeSlotId, patientId: formData.patientId },
+  });
+  if (bookingByPatientId) {
+    return 1;
+  }
+
   if (!getTimeSlotById) return; // Không tìm thấy timeSlot
 
   if (
     getTimeSlotById.currentNumber == getTimeSlotById.Schedule.maxNumberTimeSlot
   )
-    return; // Số lượng đã đầy
+    return 2; // Số lượng đã đầy
 
   //rand token
   const token = uuidv4();
@@ -111,10 +118,32 @@ const verifyBooking = async (formData) => {
   return '2';
 };
 
+const countBookingByDoctorId = async (doctorId) => {
+  const schedules = await db.Schedule.findAll({
+    where: { doctorId: doctorId },
+    include: [
+      {
+        model: db.TimeSlot,
+        include: db.Booking,
+      },
+    ],
+  });
+
+  let bookings = [];
+  for (let i = 0; i < schedules.length; i++) {
+    for (let j = 0; j < schedules[i].TimeSlots.length; j++) {
+      bookings.push(schedules[i].TimeSlots[j].Bookings);
+    }
+  }
+
+  return bookings.flat(Infinity); // làm phẳng array
+};
+
 module.exports = {
   getByPatientId,
   getByDateBooking,
   getByDoctorId,
   create,
   verifyBooking,
+  countBookingByDoctorId,
 };
