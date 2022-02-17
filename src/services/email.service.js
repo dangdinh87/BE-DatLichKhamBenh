@@ -23,8 +23,9 @@ let sendSimpleMail = async (dataSend) => {
       <h3>Xin chào ${dataSend.patientName}</h3>
       <p>Bạn nhận được mail này vì đã đặt lịch khám bệnh online tại <b>ISOFH-CARE</b></p>
       <p>Thông tin đặt lịch khám bệnh:</p>
-      <div><b>Thời gian: ${dataSend.time}</b></div>
       <div><b>Bác sĩ: ${dataSend.doctorName}</b></div>
+      <div><b>Ngày: ${dataSend.dateBooking}</b></div>
+      <div><b>Thời gian: ${dataSend.time}</b></div>
       <p>Nếu các thông tin là đúng sự thật, 
         vui lòng click vào đường link bên dưới để xác nhận và hoàn tất thủ tục
       </p>

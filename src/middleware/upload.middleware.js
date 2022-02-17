@@ -33,6 +33,7 @@ upload = upload.fields([
   { name: 'clinicImage', maxCount: 1 },
   { name: 'licenseImage', maxCount: 1 },
   { name: 'certificateImage', maxCount: 1 },
+  { name: 'image', maxCount: 1 }
 ]);
 
 module.exports = {

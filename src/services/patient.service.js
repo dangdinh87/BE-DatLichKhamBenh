@@ -13,7 +13,6 @@ const getById = async (id) => {
 
 const create = async (formData) => {
   formData.id = generatorID('PT');
-  console.log(formData);
   return db.Patient.create(formData);
 };
 
