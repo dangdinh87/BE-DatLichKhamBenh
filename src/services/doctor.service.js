@@ -1,7 +1,40 @@
-import db from '../models';
+import db, { sequelize } from '../models';
 import { generatorID } from '../utils/helpers';
 
-const getAll = async (limit, skip, search, accountId) => {
+const getAll = async (limit, skip, search, specialistId, positionId) => {
+  let query = {};
+
+  if (search) {
+    query = {
+      [Op.or]: [
+        { fullName: { [Op.like]: '%' + search + '%' } },
+        { clinicName: { [Op.like]: '%' + search + '%' } }
+      ]
+    };
+  }
+
+  if (specialistId) query.specialistId = specialistId;
+  if (positionId) query.positionId = positionId;
+  query.status = 'ACTIVE';
+
+  const countDoctor = await db.Doctor.count({ where: query });
+  const doctors = await db.Doctor.findAll({
+    where: query,
+    limit: limit,
+    offset: skip, // số lượng phần tử bỏ qua
+    order: [['createdAt', 'DESC']],
+    include: [{ model: db.Specialist }, { model: db.Position }]
+  });
+  return { data: doctors, count: countDoctor };
+};
+
+const getCount = async () => {
+  return await db.Doctor.columnCount({
+    status: 'ACTIVE'
+  });
+};
+
+const getAllFromAdmin = async (limit, skip, search, accountId) => {
   // const account = await db.Account.findOne({ where: { id: accountId } });
   // if (account.typeAccountId < 3) {
   return await db.Doctor.findAll({
@@ -67,6 +100,7 @@ const update = async (formData, doctorId) => {
 
 module.exports = {
   getAll,
+  getCount,
   getById,
   getTop,
   create,

@@ -7,7 +7,7 @@ import db from '../models';
 const getByPatientId = catchAsync(async (req, res) => {
   const patientId = req.params.patientId;
   const page = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 5;
+  const limit = req.query.limit * 1 || 10;
   const skip = limit * (page - 1);
   const search = req.query.search;
 

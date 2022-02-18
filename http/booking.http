@@ -6,11 +6,11 @@ GET http://localhost:5000/booking/patient/PT-71377913?limit=5&page=2
 GET http://localhost:5000/booking/date-booking/1111111111 
 
 ### getByDoctorId
-GET http://localhost:8080/booking/doctor/DT-18739108
+GET http://localhost:5000/booking/doctor/DT-93825413
 
 
 ### create
-POST http://localhost:8081/booking
+POST http://localhost:5000/booking
 Content-Type: application/json
 
 {
@@ -18,12 +18,12 @@ Content-Type: application/json
     "patientName":"Pé yêu😘",
     "doctorName":"Nguyễn Đăng Định",
     "value":"07:30 - 08:00",
-    "doctorId":"DT-28147879",
+    "doctorId":"DT-57737467",
 
-    "dateBooking":"4444444444",
+    "dateBooking":"1644080400000",
     "reasonExamination":"reasonExamination",
     "patientId":"PT-64395546",
-    "timeSlotId":"TL-108846396" 
+    "timeSlotId":"TL-101217200" 
 }
 
 ### verify-booking
