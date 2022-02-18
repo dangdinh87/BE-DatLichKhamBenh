@@ -136,7 +136,7 @@ const countBookingByDoctorId = async (doctorId) => {
     }
   }
 
-  return bookings.flat(Infinity); // làm phẳng array
+  return bookings.flat(Infinity).filter((el) => el.status === 'CONFIRMED'); // làm phẳng array
 };
 
 module.exports = {

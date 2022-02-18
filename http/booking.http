@@ -22,7 +22,7 @@ Content-Type: application/json
 
     "dateBooking":"4444444444",
     "reasonExamination":"reasonExamination",
-    "patientId":"PT-19671740",
+    "patientId":"PT-19671750",
     "timeSlotId":"TL-108846396" 
 }
 
