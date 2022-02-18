@@ -29,7 +29,7 @@ const getOne = catchAsync(async (req, res) => {
   if (!schedule) {
     res.status(400).json({
       message: 'Khong co lich',
-      data: [],
+      data: []
     });
   }
   return res
@@ -55,7 +55,7 @@ const create = catchAsync(async (req, res) => {
   }
 
   return res.status(200).json({
-    message: 'Thêm lịch khám thành công',
+    message: 'Thêm lịch khám thành công'
   });
 });
 
@@ -63,9 +63,6 @@ const update = catchAsync(async (req, res) => {
   const scheduleId = req.params.id;
   const formUpdate = req.body;
   const updateSchedule = await scheduleService.update(scheduleId, formUpdate);
-  res.status(200).json({
-    message: 'Update thanh cong',
-  });
 });
 
 module.exports = { getAll, getById, getOne, create, update };

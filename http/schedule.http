@@ -1,11 +1,11 @@
 
 ### GetOneSchedule  by workingDay and dockerId
-GET http://localhost:8080/schedule/get-schedule-by-date HTTP/1.1
+GET http://localhost:5000/schedule/get-schedule-by-date HTTP/1.1
 content-Type: application/json
 
 {
   "workingDay": "2222222222",
-  "doctorId":"DT-67737804"
+  "doctorId":"DT-38211003"
 }
 
 
@@ -47,7 +47,7 @@ content-Type: application/json
 }
 
 ### Update Schedule
-PUT http://localhost:8080/schedule/SD-47635796
+PUT http://localhost:8080/schedule/
 content-Type: application/json
 
 {
@@ -59,18 +59,17 @@ content-Type: application/json
   "rangeTime": 0.5,
   "arrSchedule": [
     {
-      "id":"TL-108846396",
       "orderIndex": 0,
       "value": "07:00 - 07:30",
-      "status": 0
+      "status": 1
     },
     {
-      "id":"TL-108846397",  
       "orderIndex": 1,
       "value": "07:30 - 08:00",
-      "status": 0
+      "status": 1
     }
   ],
-  "doctorId":"DT-78498832",
+  "doctorId":"AC-68960301",
+
   "status": 1
 }
