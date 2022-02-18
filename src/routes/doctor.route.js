@@ -6,7 +6,7 @@ import { verifyAccessToken } from '../services/token.service';
 
 import { auth } from '../middleware/auth.middleware';
 const router = express.Router();
-router.route('/doctor-admin').get(doctorController.getAllFromAdmin);
+
 // router
 //   .route('/')
 //   .get(auth, doctorController.getAll)

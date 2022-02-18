@@ -27,6 +27,7 @@ const login = catchAsync(async (req, res) => {
   }
 
   const info = await authService.login(username, password);
+  console.log(info);
   if (!info) {
     res.status(400).json({
       message: 'Tài khoản hoặc mật khẩu không đúng'
