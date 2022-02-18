@@ -65,18 +65,24 @@ const create = async (formData) => {
     include: [{ model: db.Schedule }]
   });
 
-
   // const updateCurrentNumberTimeSlot = await getTimeSlotById.set({
   //   currentNumber: countTimeSlots
   // });
   // await updateCurrentNumberTimeSlot.save();
+
+  const bookingByPatientId = await db.Booking.findOne({
+    where: { timeSlotId: formData.timeSlotId, patientId: formData.patientId }
+  });
+  if (bookingByPatientId) {
+    return 1;
+  }
 
   if (!getTimeSlotById) return; // Không tìm thấy timeSlot
 
   if (
     getTimeSlotById.currentNumber == getTimeSlotById.Schedule.maxNumberTimeSlot
   )
-    return; // Số lượng đã đầy
+    return 2; // Số lượng đã đầy
 
   //rand token
   const token = uuidv4();
@@ -141,6 +147,26 @@ const updateStatus = async (id, newStatus) => {
   Object.assign(booking, { status: newStatus });
   return await booking.save();
 };
+const countBookingByDoctorId = async (doctorId) => {
+  const schedules = await db.Schedule.findAll({
+    where: { doctorId: doctorId },
+    include: [
+      {
+        model: db.TimeSlot,
+        include: db.Booking
+      }
+    ]
+  });
+
+  let bookings = [];
+  for (let i = 0; i < schedules.length; i++) {
+    for (let j = 0; j < schedules[i].TimeSlots.length; j++) {
+      bookings.push(schedules[i].TimeSlots[j].Bookings);
+    }
+  }
+
+  return bookings.flat(Infinity).filter((el) => el.status === 'CONFIRMED'); // làm phẳng array
+};
 
 module.exports = {
   getByPatientId,
@@ -148,5 +174,6 @@ module.exports = {
   getByDoctorId,
   create,
   verifyBooking,
-  updateStatus
+  updateStatus,
+  countBookingByDoctorId
 };
