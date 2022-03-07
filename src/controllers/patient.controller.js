@@ -11,7 +11,7 @@ const getAll = catchAsync(async (req, res) => {
   }
   return res.status(200).json({
     message: 'Tìm thấy danh sách bệnh nhân ',
-    data: patients,
+    data: patients
   });
 });
 
@@ -22,7 +22,7 @@ const getById = catchAsync(async (req, res) => {
   }
   return res.status(200).json({
     message: 'Tìm thấy bệnh nhân',
-    data: patients,
+    data: patients
   });
 });
 
@@ -32,18 +32,25 @@ const create = catchAsync(async (req, res) => {
     return res.status(400).json({ message: 'Thêm bệnh nhân thất bại' });
   }
   res.status(200).json({
-    message: 'Thêm bệnh nhân thành công',
+    message: 'Thêm bệnh nhân thành công'
   });
 });
 
 const update = catchAsync(async (req, res) => {
-  const updatePatient = await patientService.update(req.params.id, req.body);
+  let image = req.files.image ? req.files.image[0].filename : null;
+  console.log(image, req.body);
+  const updatePatient = await patientService.update(
+    req.params.id,
+    req.body,
+    image
+  );
+
   if (!updatePatient) {
     return res.status(400).json({ message: 'Cập nhật bệnh nhân thất bại' });
   }
   res.status(200).json({
     message: 'Cập nhật bệnh nhân thành công',
-    data: updatePatient,
+    data: updatePatient
   });
 });
 
@@ -57,5 +64,5 @@ module.exports = {
   getById,
   create,
   deletePatient,
-  update,
+  update
 };

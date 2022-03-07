@@ -28,10 +28,14 @@ const register = async (formData) => {
     checkDbByTypeAccountId = db.Doctor;
   }
 
+  const isCheckNumber =
+    formData.typeAccountId == '2' ? { numberOfPatientsExamined: 0 } : {};
+
   await checkDbByTypeAccountId.create({
     id: formData.typeAccountId == '1' ? generatorID('PT') : generatorID('DT'),
     accountId: formData.id,
-    status: formData.typeAccountId == '1' ? 1 : 'NOT_ACTIVE'
+    status: formData.typeAccountId == '1' ? 1 : 'NOT_ACTIVE',
+    ...isCheckNumber
   });
 
   await db.Account.create(formData);

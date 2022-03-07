@@ -1,5 +1,6 @@
 import db, { sequelize } from '../models';
 import { generatorID } from '../utils/helpers';
+const { Op } = require('sequelize');
 
 const getAll = async (limit, skip, search, specialistId, positionId) => {
   let query = {};
@@ -35,54 +36,41 @@ const getCount = async () => {
 };
 
 const getAllFromAdmin = async (limit, skip, search, accountId) => {
-  // const account = await db.Account.findOne({ where: { id: accountId } });
-  // if (account.typeAccountId < 3) {
   return await db.Doctor.findAll({
-    limit: limit,
-    offset: skip, // số lượng phần tử bỏ qua
     order: [['createdAt', 'DESC']],
     where: {
-      [Op.or]: [
-        { fullName: { [Op.like]: '%' + search + '%' }},
-        { clinicName: { [Op.like]: '%' + search + '%' }}
-      ]
-    }
+      status: ['ACTIVE', 'PENDING', 'CANCEL']
+    },
+    include: [{ model: db.Specialist }, { model: db.Position }]
   });
-  // } else {
-  //   if (search === '') {
-  //     return await db.Doctor.findAll({
-  //       limit: limit,
-  //       offset: skip, // số lượng phần tử bỏ qua
-  //       order: [['createdAt', 'DESC']],
-  //     });
-  //   } else {
-  //     return db.Doctor.findAll({
-  //       limit: limit,
-  //       offset: skip, // số lượng phần tử bỏ qua
-  //       order: [['createdAt', 'DESC']],
-  //       where: {
-  //         [Op.or]: [
-  //           { fullName: { [Op.like]: '%' + search + '%' } },
-  //           { clinicName: { [Op.like]: '%' + search + '%' } },
-  //         ],
-  //       },
-  //     });
-  //   }
-  // }
 };
 
 const getById = async (id) => {
   return await db.Doctor.findOne({
     where: { id: id },
-    include: [db.Position, db.Specialist],
+    include: [db.Position, db.Specialist]
   });
 };
 
 const getTop = async (n) => {
-  console.log(n);
   return await db.Doctor.findAll({
+    where: {
+      status: ['ACTIVE']
+    },
     limit: parseInt(n),
-    order: [['numberOfPatientsExamined', 'DESC']],
+    include: [db.Position, db.Specialist],
+    order: [['numberOfPatientsExamined', 'DESC']]
+  });
+};
+
+const getNewClinic = async (n) => {
+  return await db.Doctor.findAll({
+    where: {
+      status: ['ACTIVE']
+    },
+    limit: parseInt(n),
+    include: [db.Position, db.Specialist],
+    order: [['createdAt', 'DESC']]
   });
 };
 
@@ -105,4 +93,6 @@ module.exports = {
   getTop,
   create,
   update,
+  getAllFromAdmin,
+  getNewClinic
 };

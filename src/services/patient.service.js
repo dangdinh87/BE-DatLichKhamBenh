@@ -7,17 +7,21 @@ const getAll = async () => {
 
 const getById = async (id) => {
   return db.Patient.findOne({
-    where: { id: id },
+    where: { id: id }
   });
 };
 
 const create = async (formData) => {
   formData.id = generatorID('PT');
-  console.log(formData);
   return db.Patient.create(formData);
 };
 
-const update = async (patientId, formData) => {
+const update = async (patientId, formData, image) => {
+  if (image === null || image === 'null') {
+    delete formData.image;
+  } else {
+    formData.image = image;
+  }
   const patient = await db.Patient.findOne({ where: { id: patientId } });
   if (!patient) return;
   Object.assign(patient, formData);
@@ -26,7 +30,7 @@ const update = async (patientId, formData) => {
 
 const deletePatient = async (id) => {
   db.Patient.destroy({
-    where: { id: id },
+    where: { id: id }
   });
 };
 
@@ -35,5 +39,5 @@ module.exports = {
   getById,
   create,
   deletePatient,
-  update,
+  update
 };

@@ -29,6 +29,7 @@ let upload = multer({
   fileFilter
 });
 upload = upload.fields([
+  { name: 'image', maxCount: 1 },
   { name: 'avatarImage', maxCount: 1 },
   { name: 'clinicImage', maxCount: 1 },
   { name: 'licenseImage', maxCount: 1 },

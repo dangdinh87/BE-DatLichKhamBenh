@@ -1,15 +1,15 @@
 import db from '../models';
 import { generatorID } from '../utils/helpers';
 import emailService from '../services/email.service';
-import { v4 as uuidv4 } from 'uuid';
 require('dotenv').config();
 
 const getByPatientId = async (id, limit, skip) => {
   return await db.Booking.findAll({
     where: { patientId: id },
     include: [{ model: db.TimeSlot }],
+    order: [['createdAt', 'DESC']],
     limit: limit,
-    offset: skip // số lượng phần tử bỏ qua
+    offset: skip
   });
 };
 
@@ -55,20 +55,19 @@ const getByDoctorId = async (doctorId) => {
 };
 
 const create = async (formData) => {
-  // Kiểm tra MaxNumberTimeSlot == count(timeSlot)
-  // const countTimeSlots = await db.Booking.count({
-  //   where: { timeSlotId: formData.timeSlotId }
-  // });
+  const countTimeSlots = await db.Booking.count({
+    where: { timeSlotId: formData.timeSlotId }
+  });
 
   const getTimeSlotById = await db.TimeSlot.findOne({
     where: { id: formData.timeSlotId },
     include: [{ model: db.Schedule }]
   });
 
-  // const updateCurrentNumberTimeSlot = await getTimeSlotById.set({
-  //   currentNumber: countTimeSlots
-  // });
-  // await updateCurrentNumberTimeSlot.save();
+  const updateCurrentNumberTimeSlot = await getTimeSlotById.set({
+    currentNumber: countTimeSlots
+  });
+  await updateCurrentNumberTimeSlot.save();
 
   const bookingByPatientId = await db.Booking.findOne({
     where: { timeSlotId: formData.timeSlotId, patientId: formData.patientId }
@@ -83,9 +82,6 @@ const create = async (formData) => {
     getTimeSlotById.currentNumber == getTimeSlotById.Schedule.maxNumberTimeSlot
   )
     return 2; // Số lượng đã đầy
-
-  //rand token
-  const token = uuidv4();
 
   // Default value
   const idGenerator = generatorID('BK');
@@ -133,20 +129,34 @@ const verifyBooking = async (formData) => {
   const statusInDb = check.status;
 
   // Đã được xác nhận
-  if (statusInDb === 'BOOKED') return '1';
+  if (statusInDb === 'CONFIRMED') return '1';
 
   // Xác thực thành công -> update status
-  const updateStatus = await check.set({ status: 'BOOKED' });
+  const updateStatus = await check.set({ status: 'CONFIRMED' });
   await updateStatus.save();
   return '2';
 };
 
-const updateStatus = async (id, newStatus) => {
+const updateStatus = async (id, result) => {
   const booking = await db.Booking.findOne({ where: { id: id } });
   if (!booking) return;
-  Object.assign(booking, { status: newStatus });
+
+  const doctor = await db.Doctor.findOne({ where: { id: result.doctorId } });
+
+  const temp = await doctor.set({
+    numberOfPatientsExamined: doctor.numberOfPatientsExamined + 1
+  });
+
+  await temp.save();
+
+  if (result.params === 'COMPLETED') {
+  }
+
+  Object.assign(booking, { status: result.params });
+
   return await booking.save();
 };
+
 const countBookingByDoctorId = async (doctorId) => {
   const schedules = await db.Schedule.findAll({
     where: { doctorId: doctorId },
@@ -165,7 +175,7 @@ const countBookingByDoctorId = async (doctorId) => {
     }
   }
 
-  return bookings.flat(Infinity).filter((el) => el.status === 'CONFIRMED'); 
+  return bookings.flat(Infinity).filter((el) => el.status === 'CONFIRMED');
 };
 
 module.exports = {

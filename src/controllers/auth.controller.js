@@ -27,7 +27,6 @@ const login = catchAsync(async (req, res) => {
   }
 
   const info = await authService.login(username, password);
-  console.log(info);
   if (!info) {
     res.status(400).json({
       message: 'Tài khoản hoặc mật khẩu không đúng'
@@ -43,7 +42,6 @@ const login = catchAsync(async (req, res) => {
 });
 
 const logout = catchAsync(async (req, res) => {
-  console.log(req.payload.accountId);
   if (!req.payload.accountId)
     return res.json({
       message: 'Đăng Xuất'

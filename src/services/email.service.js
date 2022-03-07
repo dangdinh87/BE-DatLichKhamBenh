@@ -2,14 +2,14 @@ require('dotenv').config();
 import nodemailer from 'nodemailer';
 
 let sendSimpleMail = async (dataSend) => {
-  // create reusable transporter object using the default SMTP transport
+
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false, 
     auth: {
-      user: process.env.EMAIL_APP, // generated ethereal user
-      pass: process.env.EMAIL_APP_PASSWORD, // generated ethereal password
+      user: process.env.EMAIL_APP, 
+      pass: process.env.EMAIL_APP_PASSWORD, 
     },
   });
 
@@ -18,7 +18,6 @@ let sendSimpleMail = async (dataSend) => {
     from: '"ISOFH-CARE💕" <phuanlut0000@gmail.com>', // sender address
     to: dataSend.receiverEmail, // list of receivers
     subject: 'Thông tin đặt lịch khám khám bệnh', // Subject line
-    // text: 'Hello world?', // plain text body
     html: `
       <h3>Xin chào ${dataSend.patientName}</h3>
       <p>Bạn nhận được mail này vì đã đặt lịch khám bệnh online tại <b>ISOFH-CARE</b></p>

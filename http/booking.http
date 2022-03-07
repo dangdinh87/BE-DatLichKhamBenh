@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### verify-booking
-POST  http://localhost:8080/booking/verify-booking
+POST  http://localhost:5000/booking/verify-booking
 Content-Type: application/json
 
 {

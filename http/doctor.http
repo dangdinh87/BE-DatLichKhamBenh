@@ -36,7 +36,7 @@ Content-Type: application/json
 
 
 ### Update
-PUT http://localhost:8080/doctor/DT-18739108
+PUT http://localhost:5000/doctor/DT-18739108
 Content-Type: application/json
 
 {
