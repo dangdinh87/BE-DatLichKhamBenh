@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "datlichkhambenh",
+    "database": "datlichkhambenh1",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

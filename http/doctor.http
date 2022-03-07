@@ -1,0 +1,60 @@
+
+### getAll
+GET http://localhost:8080/doctor
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy0zNDI3MzMzNyIsImlhdCI6MTY0MzI5MTIyMSwiZXhwIjoxNjQzMjk0ODIxfQ.bZtXVLO8zyno-QrbJsqbJiWvB28jpTBYVWzIIBeKbqg
+
+### getById
+GET http://localhost:5000/doctor/BS-352525223
+
+
+### getTopDoctor
+GET http://localhost:8080/doctor/top/3
+
+
+
+### Create
+POST http://localhost:5000/doctor
+Content-Type: application/json
+
+{
+  "fullName":"Minh Phuong",
+  "phone": "0999999999",  
+  "email": "phuong@gmail.com",  
+  "address":"Quảng Nam",  
+  "date":"2022-01-14",  
+  "gender":1,  
+  "status":1,  
+  "workHistory": "hh",  
+  "avatarImage": "hh",  
+  "clinicName": "hh",  
+  "certificateName": "hh",  
+  "licenseName": "hh",  
+  "specialistId": "hh",  
+  "positionId": "hh",  
+  "accountId": "AC-68960302"
+}
+
+
+### Update
+PUT http://localhost:5000/doctor/DT-18739108
+Content-Type: application/json
+
+{
+  "fullName":"Phu An",
+  "phone": "0111111111",  
+  "email": "thuankhang@gmail.com",  
+  "address":"Quảng Nam",  
+  "date":"2000-01-14",  
+  "gender":1,  
+  "status":1,  
+  "workHistory": "Bệnh viện Gia Đình",  
+  "avatarImage": "avatar",  
+  "clinicName": "Phòng Khám anh Định",  
+  "clinicImage":"image phòng khám",
+  "clinicAddress":"Địa chỉ phòng khám",
+  "certificateName": "Chứng chỉ",  
+  "licenseImage": "Giấy phép",  
+  "specialistId": "Da lieu",  
+  "positionId": "PT-01",  
+  "accountId": "AC-70760975"
+}

@@ -1,10 +1,12 @@
 import express from "express";
 import { authController } from "../controllers";
+import { verifyAccessToken } from "../services/token.service"
 
 const router = express.Router();
 
-router.post("/login", authController.login);
 router.post("/register", authController.register);
-router.post("/reset-password", authController.resetPassword);
+router.post("/login", authController.login);
+router.get("/logout", verifyAccessToken, authController.logout);
+// router.post("/reset-password", authController.resetPassword);
 
 module.exports = router;

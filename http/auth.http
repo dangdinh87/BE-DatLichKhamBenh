@@ -1,0 +1,22 @@
+### Login
+POST http://localhost:5000/auth/login HTTP/1.1
+content-Type: application/json
+
+{
+  "username":"dangdinh", 
+  "password":"123456"
+}
+
+### Register
+POST http://localhost:5000/auth/register HTTP/1.1
+content-Type: application/json
+
+{
+  "username":"admin",
+  "password":"123456",
+  "typeAccountId":"3"
+}
+
+### Logout
+GET http://localhost:5000/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiJBQy0zOTk5Nzg1OCIsImlhdCI6MTY0MjEwMTk3MywiZXhwIjoxNjQyMTA1NTczfQ.boqkkk2GQFfyHkcKdtq69B4U6nT_w0PC_bTzIgr2H_u

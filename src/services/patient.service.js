@@ -1,43 +1,43 @@
-import bcrypt from "bcryptjs";
-import res from "express/lib/response";
-import db from "../models";
-const salt = bcrypt.genSaltSync(10);
+import db from '../models';
+import { generatorID } from '../utils/helpers';
 
-const hashUserPassword = async (password) => {
-  return bcrypt.hashSync(password, salt);
-};
-
-const getAllPatients = async () => {
+const getAll = async () => {
   return db.Patient.findAll({});
 };
 
-const createPatient = async (data) => {
-  // const hashPassword = hashUserPassword(data.password);
-  // data.password = hashPassword;
+const getById = async (id) => {
+  return db.Patient.findOne({
+    where: { id: id }
+  });
+};
 
-  const count = await db.Patient.count();
-  const id = generatorID("BN");
+const create = async (formData) => {
+  formData.id = generatorID('PT');
+  return db.Patient.create(formData);
+};
 
-  console.log(`count patient: ${count}`);
-  console.log(`id generator: ${id}`);
-  data.patientId = id;
-
-  return db.Patient.create(data);
+const update = async (patientId, formData, image) => {
+  if (image === null || image === 'null') {
+    delete formData.image;
+  } else {
+    formData.image = image;
+  }
+  const patient = await db.Patient.findOne({ where: { id: patientId } });
+  if (!patient) return;
+  Object.assign(patient, formData);
+  return await patient.save();
 };
 
 const deletePatient = async (id) => {
   db.Patient.destroy({
-    where: { id: id },
+    where: { id: id }
   });
 };
 
-function generatorID(key) {
-  const ran = Math.floor(Math.random() * 99999999) + 10000000;
-  return `${key}-${ran}`;
-}
-
 module.exports = {
-  getAllPatients,
-  createPatient,
+  getAll,
+  getById,
+  create,
   deletePatient,
+  update
 };

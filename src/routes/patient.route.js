@@ -1,13 +1,15 @@
-// const auth = require('../../middlewares/auth');
-// const validate = require('../../middlewares/validate');
-// const userValidation = require('../../validations/user.validation');
-import express from "express";
-import { patientController } from "../controllers";
+import express from 'express';
+import { patientController } from '../controllers';
+import { upload } from '../middleware/upload.middleware';
 
 const router = express.Router();
 
-router.get("/", patientController.getAllPatients);
-router.post("/", patientController.createPatient);
-router.delete("/:id", patientController.deletePatient);
+router.route('/').get(patientController.getAll).post(patientController.create);
+
+router
+  .route('/:id')
+  .put(upload, patientController.update)
+  .get(patientController.getById)
+  .delete(patientController.deletePatient);
 
 module.exports = router;

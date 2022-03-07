@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   TypeAccount.init(
     {
-      typeAccountId: DataTypes.STRING,
       typeAccountName: DataTypes.STRING,
     },
     {

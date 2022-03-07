@@ -15,10 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   Schedule.init(
     {
-      scheduleId: DataTypes.STRING,
-      workingDay: DataTypes.DATE,
-      maxNumber: DataTypes.INTEGER,
-      status: DataTypes.BOOLEAN,
+      rangeTime: DataTypes.FLOAT,
+      startTime: DataTypes.STRING,
+      endTime: DataTypes.STRING,
+      workingDay: DataTypes.STRING,
+      maxNumberTimeSlot: DataTypes.INTEGER,
+      status: DataTypes.ENUM('BOOKED', 'COMPLETED', 'CANCELLED'),
+      priceTimeSlot: DataTypes.STRING,
       doctorId: DataTypes.STRING,
     },
     {

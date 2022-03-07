@@ -1,17 +1,11 @@
-"use strict";
+'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Doctors", {
+    await queryInterface.createTable('Doctors', {
       id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
-      },
-      doctorId: {
         type: Sequelize.STRING,
-        primaryKey: true,
         allowNull: false,
+        primaryKey: true,
       },
       fullName: {
         type: Sequelize.STRING,
@@ -29,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       date: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
       },
       workHistory: {
         type: Sequelize.TEXT,
@@ -40,14 +34,23 @@ module.exports = {
       clinicName: {
         type: Sequelize.STRING,
       },
-      certificateName: {
+      clinicImage: {
         type: Sequelize.STRING,
       },
-      licenseName: {
+      clinicAddress: {
+        type: Sequelize.STRING,
+      },
+      certificateImage: {
+        type: Sequelize.STRING,
+      },
+      licenseImage: {
         type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.ENUM('NOT_ACTIVE', 'PENDING', 'ACTIVE', 'CANCEL'),
+      },
+      numberOfPatientsExamined: {
+        type: Sequelize.INTEGER,
       },
       specialistId: {
         type: Sequelize.STRING,
@@ -69,6 +72,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Doctors");
+    await queryInterface.dropTable('Doctors');
   },
 };
